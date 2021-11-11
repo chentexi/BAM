@@ -1,6 +1,5 @@
 package com.trent.web.controller.system;
 
-import com.trent.system.service.ISysLoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class SysLoginController{
-   private ISysLoginService sysLoginService;
-   
+
+
 }
