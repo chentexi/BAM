@@ -1,7 +1,7 @@
 #运行版本
 spring:
   profiles:
-    active: prod
+    active: dev
 #端口
 server:
   port: 8088
