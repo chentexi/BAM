@@ -5,16 +5,16 @@
     <packaging>pom</packaging>
 
     <groupId>com.trent</groupId>
-    <artifactId>MultiModuleProject</artifactId>
+    <artifactId>BAM</artifactId>
     <version>0.0.1</version>
-    <name>MultiModuleProject</name>
+    <name>BAM</name>
     <description>Demo project for Spring Boot</description>
     <!--模块-->
     <modules>
-        <module>trent-amdin</module>
-        <module>trent-logging</module>
-        <module>trent-system</module>
-        <module>trent-tools</module>
+        <module>bam-amdin</module>
+        <module>bam-logging</module>
+        <module>bam-system</module>
+        <module>bam-tools</module>
     </modules>
 
     <parent>

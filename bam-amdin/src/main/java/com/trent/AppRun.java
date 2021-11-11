@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @Author: Trent
  * @Date: 2021/6/22 17:05
- * @program: MultiModuleProject
+ * @program: BAM
  * @Description:
  */
 @SpringBootApplication
