@@ -1,4 +1,4 @@
-//package com.trent.generation;
+//package com.trent.common.generation;
 //
 //import com.baomidou.mybatisplus.annotation.FieldFill;
 //import com.baomidou.mybatisplus.generator.AutoGenerator;

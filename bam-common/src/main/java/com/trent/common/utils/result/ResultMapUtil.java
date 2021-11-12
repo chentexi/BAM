@@ -1,4 +1,7 @@
-package com.trent.utils;
+package com.trent.common.utils.result;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -10,6 +13,8 @@ import java.util.Map;
  * @program: BAM
  * @Description:
  */
+@Getter
+@Setter
 public class ResultMapUtil implements Serializable{
 	private static final long serialVersionUID = 1852535877532127689L;
 	

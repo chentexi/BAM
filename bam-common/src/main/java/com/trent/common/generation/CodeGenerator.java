@@ -1,4 +1,4 @@
-package com.trent.generation;
+package com.trent.common.generation;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;

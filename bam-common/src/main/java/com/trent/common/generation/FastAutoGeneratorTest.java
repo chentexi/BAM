@@ -1,8 +1,8 @@
-//package com.trent.generation;
+//package com.trent.common.generation;
 //
 //import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 //import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-//import com.trent.generation.H2CodeGeneratorTest;
+//import com.trent.common.generation.H2CodeGeneratorTest;
 //import org.apache.ibatis.jdbc.ScriptRunner;
 //
 //import java.io.InputStream;
