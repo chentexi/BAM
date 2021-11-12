@@ -12,6 +12,14 @@
     <artifactId>bam-tools</artifactId>
     <dependencies>
         <dependency>
+            <groupId>com.trent</groupId>
+            <artifactId>bam-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.trent</groupId>
+            <artifactId>bam-common</artifactId>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>

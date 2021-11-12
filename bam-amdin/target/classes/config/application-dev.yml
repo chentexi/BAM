@@ -30,7 +30,7 @@ mybatis-plus:
   #配置Mapper映射文件
   mapper-locations: classpath*:/mapper/*Mapper.xml
   # 配置MyBatis数据返回类型别名（默认别名是类名）
-  type-aliases-package: com.xxxx.server.pojo
+  type-aliases-package: com.trent.admin.pojo
   configuration:
     # 自动驼峰命名
     map-underscore-to-camel-case: false
@@ -38,3 +38,14 @@ mybatis-plus:
 logging:
   level:
     com.trent.*.mapper: debug
+
+# JWT
+jwt:
+  # JWT存储的请求头
+  tokenHeader: Authorization
+  # JWT 加解密使用的密钥
+  secret: bam-secret
+  # JWT的超期限时间（60*60*24）
+  expiration: 604800
+  # JWT 负载中拿到开头
+  tokenHead: Bearer

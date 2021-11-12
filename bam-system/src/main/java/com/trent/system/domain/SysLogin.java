@@ -7,4 +7,5 @@ package com.trent.system.domain;
  * @Description:
  */
 public class SysLogin{
+
 }

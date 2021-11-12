@@ -15,6 +15,7 @@
         <module>bam-logging</module>
         <module>bam-system</module>
         <module>bam-tools</module>
+        <module>bam-common</module>
     </modules>
 
     <parent>
@@ -258,6 +259,19 @@
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>swagger-bootstrap-ui</artifactId>
             <version>1.9.6</version>
+        </dependency>
+
+        <!--security 依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <!--JWT 依赖-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.1</version>
         </dependency>
     </dependencies>
 
