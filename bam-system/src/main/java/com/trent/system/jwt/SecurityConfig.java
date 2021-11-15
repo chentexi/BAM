@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				"/captcha",
 				"/ws/**",
 				"/captcha",
-				"/images/captchaPng"
+				"/images/**"
 		);
 	}
 	@Override

@@ -6,7 +6,6 @@ import com.trent.common.utils.result.ResultUtil;
 import com.trent.system.pojo.login.Admin;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 
 /**
  * <p>
@@ -17,7 +16,7 @@ import java.io.UnsupportedEncodingException;
  * @since 2021-11-12
  */
 public interface IAdminService extends IService<Admin>{
-	ResultUtil login(String userName, String password, HttpServletRequest request) throws Exception;
+	ResultUtil login(String userName, String password, String captcha, HttpServletRequest request) throws Exception;
 	
 	/**
 	 * 获取当前用户信息

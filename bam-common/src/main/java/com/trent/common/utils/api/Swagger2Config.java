@@ -1,4 +1,4 @@
-package com.trent.common.api;
+package com.trent.common.utils.api;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

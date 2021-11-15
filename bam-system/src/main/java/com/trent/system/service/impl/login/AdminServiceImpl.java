@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,18 +45,19 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 	 * 登录返回token
 	 *
 	 * @param userName
-	 * @param password
+	 * @param passWord
+	 * @param captcha
 	 * @return
 	 */
 	@Override
-	public ResultUtil login(String userName, String password, HttpServletRequest request) throws Exception{
-		UserDetails userDetails =
-				userDetailsService.loadUserByUsername(userName);
-		if (null == userDetails || !passwordEncoder.matches(password,
-				userDetails.getPassword())) {
+	public ResultUtil login(String userName, String passWord, String captcha, HttpServletRequest request) throws Exception{
+		//验证验证码从redis里面取
+		
+		UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+		if( null == userDetails || !passwordEncoder.matches(passWord, userDetails.getPassword()) ){
 			return ResultUtil.error("用户名或密码不正确!");
 		}
-		if (!userDetails.isEnabled()){
+		if( !userDetails.isEnabled() ){
 			return ResultUtil.error("账号被禁用，请联系管理员!");
 		}
 		//更新secret登录用户对象

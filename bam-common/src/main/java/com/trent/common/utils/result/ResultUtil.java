@@ -90,7 +90,7 @@ public class ResultUtil{
 	}
 	
 	public static ResultUtil success(String msg){
-		return new ResultUtil(true, "操作成功", null);
+		return new ResultUtil(true, msg, null);
 	}
 	public static ResultUtil success(){
 		return new ResultUtil(true, "操作成功", null);

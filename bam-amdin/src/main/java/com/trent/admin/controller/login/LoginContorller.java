@@ -32,7 +32,7 @@ public class LoginContorller{
 	@ApiOperation(value = "登录之后返回token")
 	@PostMapping("/login")
 	public ResultUtil login(@RequestBody AdminLoginParam adminLoginParam, HttpServletRequest request) throws Exception{
-		return adminService.login(adminLoginParam.getUserName(), adminLoginParam.getPassWord(), request);
+		return adminService.login(adminLoginParam.getUserName(), adminLoginParam.getPassWord(),adminLoginParam.getCaptcha(), request);
 	}
 	
 	

@@ -21,4 +21,6 @@ public class AdminLoginParam{
 	private String userName;
 	@ApiModelProperty(value = "密码",required = true)
 	private String passWord;
+	@ApiModelProperty(value = "验证码",required = true)
+	private String captcha;
 }

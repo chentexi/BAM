@@ -1,4 +1,3 @@
-
 #spring配置
 spring:
   # 数据源配置
@@ -21,6 +20,21 @@ spring:
       # 连接最大存活时间，0表示永久存活，默认1800000（30分钟）
       max-lifetime: 1800000
       # 连接超时时间，默认30000（30秒）
+
+  # Redis配置
+  redis:
+    timeout: 10000ms                        # 连接超时时间
+    host: 127.0.0.1                         # Redis服务器地址
+    port: 6379                              # Redis服务器端口
+    database: 0                             # 选择哪个库，默认0库
+    lettuce:
+      pool:
+        max-active: 1024                    # 最大连接数，默认 8
+        max-wait: 10000ms                   # 最大连接阻塞等待时间，单位毫秒，默认 -1
+        max-idle: 200                       # 最大空闲连接，默认 8
+        min-idle: 5                          # 最小空闲连接，默认 0
+
+
 
 connection-timeout: 30000
 # 测试连接是否可用的查询语句
@@ -49,3 +63,7 @@ jwt:
   expiration: 604800
   # JWT 负载中拿到开头
   tokenHead: Bearer
+
+
+
+

@@ -1,6 +1,8 @@
 package com.trent.admin.controller.captcha;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.trent.common.utils.redis.RedisUtil;
+import com.trent.common.utils.result.ResultMapUtil;
 import com.wf.captcha.ArithmeticCaptcha;
 import com.wf.captcha.ChineseCaptcha;
 import com.wf.captcha.GifCaptcha;
@@ -11,6 +13,8 @@ import io.jsonwebtoken.io.IOException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +23,13 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: Trent
@@ -32,6 +42,10 @@ import java.awt.image.BufferedImage;
 public class CaptchaController{
 	@Autowired
 	private DefaultKaptcha defaultKaptcha;
+	
+	@Autowired
+	private RedisUtil redisUtil;
+	
 	@ApiOperation(value = "验证码")
 	@GetMapping(value = "/captcha", produces = "image/jpeg")
 	public void captcha(HttpServletRequest request, HttpServletResponse
@@ -78,25 +92,57 @@ public class CaptchaController{
 		//-------------------生成验证码 end ----------------------------
 	}
 	@ApiOperation(value = "png类型验证码")
-	@GetMapping("/images/captchaPng")
-	public void captchaPng(String key, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		CaptchaUtil.out(request, response);
+	@GetMapping(value = "/images/captchaPng", produces = "image/png")
+	public void captchaPng(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		//动态验证码
+		GifCaptcha gifCaptcha = new GifCaptcha(130,48,4);
+		//中文验证码
+		ChineseCaptcha chineseCaptchaAbstract = new ChineseCaptcha(130,28,4);
+		//算术验证码
+		ArithmeticCaptcha arithmeticCaptcha = new ArithmeticCaptcha(130 , 28 , 4);
+		//静态验证码
+		SpecCaptcha specCaptcha = new SpecCaptcha(130,48,4);
+		String verCode = specCaptcha.text().toLowerCase();
+		String key = UUID.randomUUID().toString();
+		// 存入redis并设置过期时间为30分钟
+		redisUtil.set(key, verCode);
+		redisUtil.expire(key, 30, TimeUnit.MINUTES);
+		CaptchaUtil.out(specCaptcha,request, response);
+		
 	}
 	@ApiOperation(value = "gif类型验证码")
-	@RequestMapping("/images/captchaGif")
+	@GetMapping(value = "/images/captchaGif",produces = "image/GIF")
 	public void captchaGif(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
 		
+		//// 设置请求头为输出图片类型
+		//response.setContentType("image/gif");
+		//response.setHeader("Pragma", "No-cache");
+		//response.setHeader("Cache-Control", "no-cache");
+		//response.setDateHeader("Expires", 0);
+		//
+		//// 三个参数分别为宽、高、位数
+		//SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
+		//// 设置字体
+		//specCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));  // 有默认字体，可以不用设置
+		//// 设置类型，纯数字、纯字母、字母数字混合
+		//specCaptcha.setCharType(Captcha.TYPE_ONLY_NUMBER);
+		//
+		//// 验证码存入session
+		//request.getSession().setAttribute("captcha", specCaptcha.text().toLowerCase());
+		//
+		//// 输出图片流
+		//specCaptcha.out(response.getOutputStream());
 		// 设置位数
 		CaptchaUtil.out(5, request, response);
 		// 设置宽、高、位数
 		CaptchaUtil.out(130, 48, 5, request, response);
-		
+
 		// 使用gif验证码
 		GifCaptcha gifCaptcha = new GifCaptcha(130,48,4);
 		CaptchaUtil.out(gifCaptcha, request, response);
 	}
 	@ApiOperation(value = "ZHCN类型验证码")
-	@RequestMapping("/images/captchaZHCN")
+	@GetMapping(value = "/images/captchaZHCN",produces = "image/JPEG")
 	public void captchaZHCN(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
 		
 		// 中文类型
@@ -108,7 +154,7 @@ public class CaptchaController{
 		captcha.out(response.getOutputStream());
 	}
 	@ApiOperation(value = "compute类型验证码")
-	@RequestMapping("/images/captchaCompute")
+	@GetMapping(value = "/images/captchaCompute",produces = "image/png")
 	public void captchaCompute(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
 		
 		// 算术类型

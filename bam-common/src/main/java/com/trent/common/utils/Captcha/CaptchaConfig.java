@@ -1,19 +1,10 @@
-package com.trent.common.Captcha;
+package com.trent.common.utils.Captcha;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
-import com.wf.captcha.ArithmeticCaptcha;
-import com.wf.captcha.ChineseCaptcha;
-import com.wf.captcha.GifCaptcha;
-import com.wf.captcha.SpecCaptcha;
-import com.wf.captcha.base.Captcha;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Properties;
 
 /**

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.util.Collection;
 
-import com.trent.common.base.BaseEntity;
+import com.trent.common.utils.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

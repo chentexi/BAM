@@ -28,7 +28,7 @@
     <select id="selectAdminByName" parameterType="string" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_admin
+        from admin
         <where>
             username ='admin'
             and enabled=1

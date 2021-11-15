@@ -1,6 +1,5 @@
-package com.trent.common.base;
+package com.trent.common.utils.base;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
