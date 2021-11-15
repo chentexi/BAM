@@ -248,7 +248,7 @@
             <version>5.23</version>
         </dependency>
 
-        <!-- swagger2 依赖 -->
+        <!-- swagger2 依赖(用于接口文档) -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -261,12 +261,6 @@
             <version>1.9.6</version>
         </dependency>
 
-        <!--security 依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <version>2.5.1</version>
-        </dependency>
         <!--JWT 依赖-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

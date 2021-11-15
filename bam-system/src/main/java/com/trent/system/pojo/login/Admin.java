@@ -1,4 +1,4 @@
-package com.trent.admin.pojo;
+package com.trent.system.pojo.login;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -52,7 +52,7 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
     private Boolean enabled;
 
     @ApiModelProperty(value = "用户名")
-    private String username;
+    private String userName;
 
     @ApiModelProperty(value = "密码")
     private String password;
@@ -69,19 +69,23 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
         return null;
     }
     @Override
+    public String getUsername(){
+        return null;
+    }
+    @Override
     public boolean isAccountNonExpired(){
-        return false;
+        return true;
     }
     @Override
     public boolean isAccountNonLocked(){
-        return false;
+        return true;
     }
     @Override
     public boolean isCredentialsNonExpired(){
-        return false;
+        return true;
     }
     @Override
     public boolean isEnabled(){
-        return false;
+        return enabled;
     }
 }

@@ -94,5 +94,8 @@ public class UUIDUtil{
 		
 		String uuid8 = get8UUID();
 		System.out.println("uuid8"+uuid8);
+		
+		String uuid = get32UUID();
+		System.out.println(uuid);
 	}
 }

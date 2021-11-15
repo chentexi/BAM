@@ -1,11 +1,14 @@
-package com.trent.common.jwt;
+package com.trent.system.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +19,7 @@ import java.util.Map;
  * @program: BAM
  * @Description:
  */
+@Component
 public class JwtTokenUtil{
 	private static final String CLAIM_KEY_USERNAME = "sub";
 	private static final String CLAIM_KEY_CREATED = "created";
@@ -24,13 +28,58 @@ public class JwtTokenUtil{
 	@Value("${jwt.expiration}")
 	private Long expiration;
 	/**
+	 * 根据用户信息生成token
+	 *
+	 * @param userDetails
+	 * @return
+	 */
+	public String generateToken(UserDetails userDetails) throws Exception{
+		Map<String, Object> claims = new HashMap<>();
+		claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
+		claims.put(CLAIM_KEY_CREATED, new Date());
+		return generateToken(claims);
+	}
+	/**
 	 * 根据负载生成JWT Token
 	 *
 	 * @param claims
 	 * @return
 	 */
-	private String generateToken(Map<String, Object> claims){
-		return Jwts.builder().setClaims(claims).setExpiration(generateExpirationDate()).signWith(SignatureAlgorithm.ES512, secret).compact();
+	private String generateToken(Map<String, Object> claims) throws Exception{
+		String decode = new String(Base64.getMimeDecoder().decode(secret.toString().replace("\r\n", "")),"utf-8");
+		System.out.println(secret);
+		return Jwts.builder()
+				.setClaims(claims)
+				.setExpiration(generateExpirationDate())
+				.signWith(SignatureAlgorithm.HS512, secret)
+				.compact();
+	}
+	/**
+	 * 验证token是否有效
+	 *
+	 * @param token
+	 * @param userDetails
+	 * @return
+	 */
+	public boolean validateToken(String token, UserDetails userDetails){
+		String username = getUserNameFormToken(token);
+		return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+	}
+	/**
+	 * 从token中获取登录用户名
+	 *
+	 * @param token
+	 * @return
+	 */
+	public String getUserNameFormToken(String token){
+		String username;
+		try{
+			Claims claims = getClaimsFromToken(token);
+			username = claims.getSubject();
+		}catch( Exception e ){
+			username = null;
+		}
+		return username;
 	}
 	/**
 	 * 从token中获取JWT中的负载
@@ -47,6 +96,19 @@ public class JwtTokenUtil{
 		}
 		return claims;
 	}
+	/**
+	 * 刷新token
+	 *
+	 * @param token
+	 * @return
+	 */
+	public String refreshToken(String token) throws Exception{
+		Claims claims = getClaimsFromToken(token);
+		claims.put(CLAIM_KEY_CREATED, new Date());
+		return generateToken(claims);
+	}
+
+	
 	/**
 	 * 生成token过期时间
 	 *
@@ -75,45 +137,8 @@ public class JwtTokenUtil{
 		Date expiredDate = getExpiredDateFromToken(token);
 		return expiredDate.before(new Date());
 	}
-	/**
-	 * 从token中获取登录用户名
-	 *
-	 * @param token
-	 * @return
-	 */
-	public String getUserNameFormToken(String token){
-		String username;
-		try{
-			Claims claims = getClaimsFromToken(token);
-			username = claims.getSubject();
-		}catch( Exception e ){
-			username = null;
-		}
-		return username;
-	}
-	/**
-	 * 验证token是否有效
-	 *
-	 * @param token
-	 * @param userDetails
-	 * @return
-	 */
-	public boolean validateToken(String token, UserDetails userDetails){
-		String username = getUserNameFormToken(token);
-		return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
-	}
-	/**
-	 * 根据用户信息生成token
-	 *
-	 * @param userDetails
-	 * @return
-	 */
-	public String generateToken(UserDetails userDetails){
-		Map<String, Object> claims = new HashMap<>();
-		claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
-		claims.put(CLAIM_KEY_CREATED, new Date());
-		return generateToken(claims);
-	}
+
+
 	/**
 	 * 判断token是否可以被刷新
 	 *
@@ -123,16 +148,6 @@ public class JwtTokenUtil{
 	public boolean canRefresh(String token){
 		return !isTokenExpired(token);
 	}
-	/**
-	 * 刷新token
-	 *
-	 * @param token
-	 * @return
-	 */
-	public String refreshToken(String token){
-		Claims claims = getClaimsFromToken(token);
-		claims.put(CLAIM_KEY_CREATED, new Date());
-		return generateToken(claims);
-	}
+	
 	
 }

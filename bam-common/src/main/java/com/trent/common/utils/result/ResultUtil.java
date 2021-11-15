@@ -33,60 +33,7 @@ public class ResultUtil{
 	private String info;
 	/** 是否响应 */
 	private Boolean success;
-	
-	public static ResultUtil build(Integer status, String msg, Object data){
-		return new ResultUtil(status, msg, data);
-	}
-	
-	public static ResultUtil ok(String info, Object data){
-		return new ResultUtil(info, data);
-	}
-	public static ResultUtil ok(Boolean success,String info,Object data){
-		return new ResultUtil(success,info,data);
-	}
-	public static <T> ResultUtil ok(T t){
-		return new ResultUtil("操作成功", t);
-	}
-	
-	public static ResultUtil ok(){
-		return new ResultUtil("操作成功", null);
-	}
-	
-	public static ResultUtil success(Object data){
-		return new ResultUtil(1, "操作成功", data);
-	}
-	
-	public static ResultUtil success(String msg){
-		return new ResultUtil(1, "操作成功", null);
-	}
-	public static ResultUtil success(){
-		return new ResultUtil(1, "操作成功", null);
-	}
-	
-	public static ResultUtil error(String msg, Object data){
-		return new ResultUtil(0, msg, data);
-	}
-	
-	public static ResultUtil error(String msg){
-		return new ResultUtil(0, msg, null);
-	}
-	
-	public static ResultUtil error(Integer code, String info){
-		return new ResultUtil(code, info);
-	}
-	public static ResultUtil error(Boolean success, String info){
-		return new ResultUtil(success, info);
-	}
-	
-	
-	public ResultUtil(){
-	
-	}
-	
-	public static ResultUtil build(Integer status, String msg){
-		return new ResultUtil(status, msg, null);
-	}
-	
+
 	public ResultUtil(Integer status, String msg, Object data){
 		this.status = status;
 		this.msg = msg;
@@ -114,6 +61,66 @@ public class ResultUtil{
 		this.success = success;
 		this.info = info;
 	}
+	public static ResultUtil build(Integer status, String msg, Object data){
+		return new ResultUtil(status, msg, data);
+	}
+	
+	public static ResultUtil ok(String info, Object data){
+		return new ResultUtil(info, data);
+	}
+	public static ResultUtil ok(Boolean success,String info,Object data){
+		return new ResultUtil(success,info,data);
+	}
+	public static ResultUtil ok(Boolean success,String info){
+		return new ResultUtil(success,info);
+	}
+	public static ResultUtil ok(Integer code,String info,Object data){
+		return new ResultUtil(code,info,data);
+	}
+	public static <T> ResultUtil ok(T t){
+		return new ResultUtil("操作成功", t);
+	}
+	
+	public static ResultUtil ok(){
+		return new ResultUtil("操作成功", null);
+	}
+	
+	public static ResultUtil success(Object data){
+		return new ResultUtil(true, "操作成功", data);
+	}
+	
+	public static ResultUtil success(String msg){
+		return new ResultUtil(true, "操作成功", null);
+	}
+	public static ResultUtil success(){
+		return new ResultUtil(true, "操作成功", null);
+	}
+	
+	public static ResultUtil error(String msg, Object data){
+		return new ResultUtil(0, msg, data);
+	}
+	
+	public static ResultUtil error(String msg){
+		return new ResultUtil(0, msg, null);
+	}
+	
+	public static ResultUtil error(Integer code, String info){
+		return new ResultUtil(code, info);
+	}
+	public static ResultUtil error(Boolean success, String info){
+		return new ResultUtil(success, info);
+	}
+	
+	
+	public ResultUtil(){
+	
+	}
+	
+	public static ResultUtil build(Integer status, String msg){
+		return new ResultUtil(status, msg, null);
+	}
+	
+
 	public Integer getStatus(){
 		return status;
 	}
