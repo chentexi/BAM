@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_admin_role")
+@TableName("admin_role")
 @ApiModel(value="AdminRole对象", description="")
 public class AdminRole implements Serializable {
 

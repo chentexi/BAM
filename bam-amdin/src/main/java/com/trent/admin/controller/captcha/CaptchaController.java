@@ -6,6 +6,7 @@ import com.wf.captcha.ChineseCaptcha;
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
+import com.wf.captcha.utils.CaptchaUtil;
 import io.jsonwebtoken.io.IOException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -78,34 +79,25 @@ public class CaptchaController{
 	}
 	@ApiOperation(value = "png类型验证码")
 	@GetMapping("/images/captchaPng")
-	public void captchaPng(String key, HttpServletRequest request, HttpServletResponse response) throws java.io.IOException{
-		// png类型
-		SpecCaptcha captcha = new SpecCaptcha(130, 48);
-		String text = captcha.text();// 获取验证码的字符
-		char[] chars = captcha.textChar();// 获取验证码的字符数组
-		
-		System.out.println("验证码："+text);
-		System.out.println(chars);
-		// 输出验证码
-		captcha.out(response.getOutputStream());
+	public void captchaPng(String key, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		CaptchaUtil.out(request, response);
 	}
 	@ApiOperation(value = "gif类型验证码")
 	@RequestMapping("/images/captchaGif")
-	public void captchaGif(HttpServletResponse response) throws java.io.IOException{
+	public void captchaGif(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
 		
-		// 三个参数分别为宽、高、位数
-		GifCaptcha gifCaptcha = new GifCaptcha(100, 48, 4);
-		// 设置类型：字母数字混合
-		gifCaptcha.setCharType(Captcha.TYPE_DEFAULT);
-		//获取验证码
-		String text = gifCaptcha.text();
-		System.out.println("验证码为："+text);
-		// 输出验证码
-		gifCaptcha.out(response.getOutputStream());
+		// 设置位数
+		CaptchaUtil.out(5, request, response);
+		// 设置宽、高、位数
+		CaptchaUtil.out(130, 48, 5, request, response);
+		
+		// 使用gif验证码
+		GifCaptcha gifCaptcha = new GifCaptcha(130,48,4);
+		CaptchaUtil.out(gifCaptcha, request, response);
 	}
 	@ApiOperation(value = "ZHCN类型验证码")
 	@RequestMapping("/images/captchaZHCN")
-	public void captchaZHCN(HttpServletResponse response) throws java.io.IOException{
+	public void captchaZHCN(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
 		
 		// 中文类型
 		ChineseCaptcha captcha = new ChineseCaptcha(130, 48);
@@ -117,7 +109,7 @@ public class CaptchaController{
 	}
 	@ApiOperation(value = "compute类型验证码")
 	@RequestMapping("/images/captchaCompute")
-	public void captchaCompute(HttpServletResponse response) throws java.io.IOException{
+	public void captchaCompute(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
 		
 		// 算术类型
 		ArithmeticCaptcha captcha = new ArithmeticCaptcha(130, 48);

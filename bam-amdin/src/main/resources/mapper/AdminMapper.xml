@@ -10,8 +10,8 @@
         <result column="telephone" property="telephone"/>
         <result column="address" property="address"/>
         <result column="enabled" property="enabled"/>
-        <result column="username" property="userName"/>
-        <result column="password" property="password"/>
+        <result column="userName" property="userName"/>
+        <result column="passWord" property="passWord"/>
         <result column="userFace" property="userFace"/>
         <result column="remark" property="remark"/>
     </resultMap>

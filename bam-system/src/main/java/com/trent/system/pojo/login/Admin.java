@@ -26,7 +26,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_admin")
+@TableName("admin")
 @ApiModel(value="Admin对象", description="")
 public class Admin extends BaseEntity implements Serializable, UserDetails{
 
@@ -55,7 +55,7 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
     private String userName;
 
     @ApiModelProperty(value = "密码")
-    private String password;
+    private String passWord;
 
     @ApiModelProperty(value = "用户头像")
     private String userFace;
@@ -67,6 +67,10 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
         return null;
+    }
+    @Override
+    public String getPassword(){
+        return passWord;
     }
     @Override
     public String getUsername(){
