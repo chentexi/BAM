@@ -1,13 +1,8 @@
 package com.trent.system.jwt;
 
-import com.trent.system.jwt.JwtAuthenticationTokenFilter;
-import com.trent.system.jwt.RestfulAccessDeniedHandler;
-import com.trent.system.jwt.RestfulAccessDeniedHandler;
-
 import com.trent.system.pojo.login.Admin;
 import com.trent.system.service.login.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -55,7 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				"/swagger-resources/**",
 				"/v2/api-docs/**",
 				"/captcha",
-				"/ws/**"
+				"/ws/**",
+				"/captcha",
+				"/images/captchaPng"
 		);
 	}
 	@Override
