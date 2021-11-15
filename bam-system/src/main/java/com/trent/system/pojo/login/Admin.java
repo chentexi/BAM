@@ -70,8 +70,9 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
     }
     @Override
     public String getUsername(){
-        return null;
+        return userName;
     }
+    
     @Override
     public boolean isAccountNonExpired(){
         return true;
