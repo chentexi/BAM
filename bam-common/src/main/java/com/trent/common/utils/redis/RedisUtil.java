@@ -26,15 +26,10 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
 public class RedisUtil{
-	//@Autowired
 	private StringRedisTemplate redisTemplate;
 	
-	public void setRedisTemplate(StringRedisTemplate redisTemplate) {
+	public RedisUtil(StringRedisTemplate redisTemplate){
 		this.redisTemplate = redisTemplate;
-	}
-
-	public StringRedisTemplate getRedisTemplate() {
-		return this.redisTemplate;
 	}
 	
 	/** -------------------key相关操作--------------------- */

@@ -2,8 +2,11 @@
 spring:
   # 数据源配置
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/bam?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+
+    #    driver-class-name: com.mysql.jdbc.Driver
+    #    url: jdbc:mysql://localhost:3306/bam?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/bam?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: "0515"
     hikari:
@@ -26,7 +29,7 @@ spring:
     timeout: 10000ms                        # 连接超时时间
     host: 127.0.0.1                         # Redis服务器地址
     port: 6379                              # Redis服务器端口
-    database: 0                             # 选择哪个库，默认0库
+    database: 1                             # 选择哪个库，默认0库
     lettuce:
       pool:
         max-active: 1024                    # 最大连接数，默认 8
@@ -51,7 +54,21 @@ mybatis-plus:
 ## Mybatis SQL 打印(方法接口所在的包，不是Mapper.xml所在的包)
 logging:
   level:
-    com.trent.*.mapper: debug
+    org.springframework: WARN
+    org.spring.springboot.dao: debug
+    root: info
+  com.*.*.mapper: debug
+  # log4jdbc
+  jdbc.connection: FATAL
+  jdbc.resultset: error
+  jdbc.audit: FATAL
+  jdbc.sqlonly: debug
+  jdbc.sqltiming: DEBUG
+  jdbc.resultsettable:
+  #    pattern:
+  # logback 配置（显示类名、方法名、代码行号问题）  https://blog.csdn.net/qq853632587/article/details/78222780
+  # console: "[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line - %msg%n"
+
 
 # JWT
 jwt:

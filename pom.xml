@@ -37,16 +37,18 @@
         <druid.version>1.2.6</druid.version>
         <HikariCP.version>4.0.3</HikariCP.version>
         <log4jdbc.version>1.16</log4jdbc.version>
+        <logback.version>1.1.11</logback.version>
         <shiro.version>1.7.1</shiro.version>
         <mysql.version>5.1.41</mysql.version>
         <spring-web.version>5.3.8</spring-web.version>
         <thymeleaf.extras.shiro.version>2.0.0</thymeleaf.extras.shiro.version>
-        <log4jdbc.version>1.16</log4jdbc.version>
         <swagger.version>2.9.2</swagger.version>
         <fastjson.version>1.2.70</fastjson.version>
-        <druid.version>1.1.24</druid.version>
         <commons-pool2.version>2.5.0</commons-pool2.version>
         <mapstruct.version>1.3.1.Final</mapstruct.version>
+        <lombok.version>1.18.20</lombok.version>
+        <ip2region.version>1.7.2</ip2region.version>
+        <slf4j.verison>1.6.1</slf4j.verison>
     </properties>
 
     <dependencies>
@@ -94,9 +96,23 @@
 
         <!--监控sql日志-->
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.bgee.log4jdbc-log4j2</groupId>
             <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
             <version>${log4jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
 
         <!-- Swagger UI 相关 -->
@@ -139,23 +155,24 @@
         </dependency>
 
         <!-- druid数据源驱动 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.lionsoul</groupId>
-            <artifactId>ip2region</artifactId>
-            <version>1.7.2</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>com.alibaba</groupId>-->
+        <!--    <artifactId>druid-spring-boot-starter</artifactId>-->
+        <!--    <version>${druid.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>org.lionsoul</groupId>-->
+        <!--    <artifactId>ip2region</artifactId>-->
+        <!--    <version>${ip2region.version}</version>-->
+        <!--</dependency>-->
 
         <!--lombok插件-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>${lombok.version}</version>
         </dependency>
+
         <!--mybatis-plus 依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -283,6 +300,7 @@
             <artifactId>guava</artifactId>
             <version>27.0.1-jre</version>
         </dependency>
+
     </dependencies>
 
     <build>

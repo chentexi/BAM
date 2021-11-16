@@ -2,7 +2,6 @@ package com.trent.admin.controller.captcha;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.trent.common.utils.redis.RedisUtil;
-import com.trent.common.utils.result.ResultMapUtil;
 import com.wf.captcha.ArithmeticCaptcha;
 import com.wf.captcha.ChineseCaptcha;
 import com.wf.captcha.GifCaptcha;
@@ -12,22 +11,16 @@ import com.wf.captcha.utils.CaptchaUtil;
 import io.jsonwebtoken.io.IOException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -38,6 +31,7 @@ import java.util.concurrent.TimeUnit;
  * @Description:
  */
 @Api(tags = "CaptchaController")
+@Slf4j
 @RestController
 public class CaptchaController{
 	@Autowired
@@ -104,6 +98,7 @@ public class CaptchaController{
 		SpecCaptcha specCaptcha = new SpecCaptcha(130,48,4);
 		String verCode = specCaptcha.text().toLowerCase();
 		String key = UUID.randomUUID().toString();
+		log.info("图片验证码()png类型生成的redis的key为: {},生成的验证码为: {}",key,verCode);
 		// 存入redis并设置过期时间为30分钟
 		redisUtil.set(key, verCode);
 		redisUtil.expire(key, 30, TimeUnit.MINUTES);
