@@ -38,6 +38,17 @@
     </appender>
 
     <!--2. 输出到文档 -->
+    <!--每天生成日志文件 -->
+    <!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+    <!--        <FileNamePattern>${LOG_HOME}/server.log.%d{yyyy-MM-dd-HH}</FileNamePattern>-->
+    <!--        <MaxHistory>60</MaxHistory>-->
+    <!--    </rollingPolicy>-->
+    <!--    <encoder>-->
+    <!--        <pattern>[%level] %d{yyyy-MM-dd HH:mm:ss.SSS} %X{logId} %c.java - %msg%n</pattern>-->
+    <!--        <charset>utf-8</charset>-->
+    <!--    </encoder>-->
+    <!--</appender>-->
     <!-- 2.1 level为 DEBUG 日志，时间滚动输出 -->
     <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文档的路径及文档名 -->
