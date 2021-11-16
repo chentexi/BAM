@@ -1,0 +1,21 @@
+package com.trent.system.service.impl.role;
+
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.trent.system.mapper.role.SysRoleMapper;
+import com.trent.system.pojo.role.SysRole;
+import com.trent.system.service.role.ISysRoleService;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ * 角色信息表 服务实现类
+ * </p>
+ *
+ * @author Trent
+ * @since 2021-11-16
+ */
+@Service
+public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements ISysRoleService{
+
+}

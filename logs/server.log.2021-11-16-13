@@ -1,0 +1,40 @@
+[INFO] 2021-11-16 13:07:20.359  com.trent.AppRun.java - Starting AppRun using Java 1.8.0_241 on DESKTOP-R4JKNA9 with PID 23376 (D:\Strive\TrentProject\BAM\bam-amdin\target\classes started by Trent in D:\Strive\TrentProject\BAM)
+[INFO] 2021-11-16 13:07:20.363  com.trent.AppRun.java - The following profiles are active: dev
+[INFO] 2021-11-16 13:07:23.785  org.apache.coyote.http11.Http11NioProtocol.java - Initializing ProtocolHandler ["http-nio-8088"]
+[INFO] 2021-11-16 13:07:23.786  org.apache.catalina.core.StandardService.java - Starting service [Tomcat]
+[INFO] 2021-11-16 13:07:23.786  org.apache.catalina.core.StandardEngine.java - Starting Servlet engine: [Apache Tomcat/9.0.46]
+[INFO] 2021-11-16 13:07:24.004  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].java - Initializing Spring embedded WebApplicationContext
+[WARN] 2021-11-16 13:07:24.096  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration.java - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO] 2021-11-16 13:07:24.117  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure.java - Init DruidDataSource
+[ERROR] 2021-11-16 13:07:24.257  com.alibaba.druid.pool.DruidDataSource.java - testWhileIdle is true, validationQuery not set
+[INFO] 2021-11-16 13:07:24.268  com.alibaba.druid.pool.DruidDataSource.java - {dataSource-1} inited
+[INFO] 2021-11-16 13:07:24.783  org.hibernate.jpa.internal.util.LogHelper.java - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO] 2021-11-16 13:07:24.872  org.hibernate.Version.java - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO] 2021-11-16 13:07:25.142  org.hibernate.annotations.common.Version.java - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO] 2021-11-16 13:07:25.387  org.hibernate.dialect.Dialect.java - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+[INFO] 2021-11-16 13:07:25.710  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator.java - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[WARN] 2021-11-16 13:07:26.691  com.baomidou.mybatisplus.core.metadata.TableInfoHelper.java - Warn: Could not find @TableId in Class: com.trent.admin.pojo.MailLog.
+[INFO] 2021-11-16 13:07:29.170  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping.java - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+[INFO] 2021-11-16 13:07:29.903  org.quartz.impl.StdSchedulerFactory.java - Using default implementation for ThreadExecutor
+[INFO] 2021-11-16 13:07:29.918  org.quartz.core.SchedulerSignalerImpl.java - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+[INFO] 2021-11-16 13:07:29.918  org.quartz.core.QuartzScheduler.java - Quartz Scheduler v.2.3.2 created.
+[INFO] 2021-11-16 13:07:29.919  org.quartz.simpl.RAMJobStore.java - RAMJobStore initialized.
+[INFO] 2021-11-16 13:07:29.920  org.quartz.core.QuartzScheduler.java - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+[INFO] 2021-11-16 13:07:29.920  org.quartz.impl.StdSchedulerFactory.java - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+[INFO] 2021-11-16 13:07:29.920  org.quartz.impl.StdSchedulerFactory.java - Quartz scheduler version: 2.3.2
+[INFO] 2021-11-16 13:07:29.921  org.quartz.core.QuartzScheduler.java - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@5a78e7e3
+[INFO] 2021-11-16 13:07:30.263  org.apache.coyote.http11.Http11NioProtocol.java - Starting ProtocolHandler ["http-nio-8088"]
+[INFO] 2021-11-16 13:07:30.297  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.java - Context refreshed
+[INFO] 2021-11-16 13:07:30.319  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.java - Found 1 custom documentation plugin(s)
+[INFO] 2021-11-16 13:07:30.400  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner.java - Scanning for api listing references
+[INFO] 2021-11-16 13:07:30.809  org.quartz.core.QuartzScheduler.java - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+[INFO] 2021-11-16 13:07:30.821  com.trent.AppRun.java - Started AppRun in 11.235 seconds (JVM running for 15.272)
+[INFO] 2021-11-16 13:08:07.701  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].java - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO] 2021-11-16 13:08:08.094  com.trent.admin.controller.captcha.CaptchaController.java - 图片验证码()png类型生成的redis的key为: 82b4b8ba-0f4f-4930-b9ad-6cc1fb20b976,生成的验证码为: cwpd
