@@ -69,10 +69,15 @@ public class RedisConfig{
 		objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.WRAPPER_ARRAY);
 		jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
 		//3.序列话配置，乱码问题解决以及我们缓存的时效性
-		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(1000)).//缓存时效性设置
-				                                                                                                                 serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer)).//key序列化
-						                                                                                                                                                                                                                serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer)).//value序列化
-								                                                                                                                                                                                                                                                                                                                             disableCachingNullValues();//空值不存入缓存
+		RedisCacheConfiguration config = RedisCacheConfiguration
+										.defaultCacheConfig()
+										.entryTtl(Duration.ofSeconds(1000))    //缓存时效性设置
+										//key序列化
+										.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer))
+										//value序列化
+										.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer))
+										//空值不存入缓存
+										.disableCachingNullValues();
 		//4.创建cacheManager链接并设置属性
 		RedisCacheManager cacheManager = RedisCacheManager.builder(factory).cacheDefaults(config).build();
 		return cacheManager;
