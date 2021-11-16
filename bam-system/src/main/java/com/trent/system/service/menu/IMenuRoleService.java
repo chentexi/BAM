@@ -1,7 +1,7 @@
 package com.trent.system.service.menu;
 
-import com.trent.system.pojo.login.MenuRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.trent.system.pojo.menu.RoleMenu;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Trent
  * @since 2021-11-12
  */
-public interface IMenuRoleService extends IService<MenuRole> {
+public interface IMenuRoleService extends IService<RoleMenu> {
 
 }

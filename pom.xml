@@ -49,6 +49,8 @@
         <lombok.version>1.18.20</lombok.version>
         <ip2region.version>1.7.2</ip2region.version>
         <slf4j.verison>1.6.1</slf4j.verison>
+        <pagehelper.version>5.2.1</pagehelper.version>
+        <pagehelper.spring.boot.version>1.2.3</pagehelper.spring.boot.version>
     </properties>
 
     <dependencies>
@@ -300,7 +302,41 @@
             <artifactId>guava</artifactId>
             <version>27.0.1-jre</version>
         </dependency>
-
+        <!--mybatis 分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>${pagehelper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
+            <version>${pagehelper.spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.spring.boot.version}</version>
+        </dependency>
+        <!--&lt;!&ndash;mybatis 分页插件2&ndash;&gt;-->
+        <!--&lt;!&ndash;mybatis&ndash;&gt;-->
+        <!--<dependency>-->
+        <!--    <groupId>org.mybatis.spring.boot</groupId>-->
+        <!--    <artifactId>mybatis-spring-boot-starter</artifactId>-->
+        <!--    <version>1.3.1</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;mapper&ndash;&gt;-->
+        <!--<dependency>-->
+        <!--    <groupId>tk.mybatis</groupId>-->
+        <!--    <artifactId>mapper-spring-boot-starter</artifactId>-->
+        <!--    <version>1.2.4</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;pagehelper&ndash;&gt;-->
+        <!--<dependency>-->
+        <!--    <groupId>com.github.pagehelper</groupId>-->
+        <!--    <artifactId>pagehelper-spring-boot-starter</artifactId>-->
+        <!--    <version>1.2.3</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
