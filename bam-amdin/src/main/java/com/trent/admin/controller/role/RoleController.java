@@ -1,4 +1,4 @@
-package com.trent.admin.controller;
+package com.trent.admin.controller.role;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 角色信息表 前端控制器
  * </p>
  *
  * @author Trent
- * @since 2021-11-12
+ * @since 2021-11-16
  */
 @RestController
-@RequestMapping("/menu")
-public class MenuController {
+@RequestMapping("/role")
+public class RoleController {
 
 }
