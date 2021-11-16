@@ -1,9 +1,9 @@
-package com.trent.admin.service.impl;
+package com.trent.system.service.impl.menu;
 
-import com.trent.admin.pojo.Role;
-import com.trent.admin.mapper.RoleMapper;
-import com.trent.admin.service.IRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.trent.system.mapper.menu.RoleMapper;
+import com.trent.system.pojo.login.Role;
+import com.trent.system.service.menu.IRoleService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,6 +1,6 @@
-package com.trent.admin.mapper;
+package com.trent.system.mapper.menu;
 
-import com.trent.admin.pojo.MenuRole;
+import com.trent.system.pojo.login.MenuRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

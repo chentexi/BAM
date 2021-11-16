@@ -1,4 +1,4 @@
-package com.trent.admin.pojo;
+package com.trent.system.pojo.login;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Trent
@@ -21,9 +21,9 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_role")
-@ApiModel(value="Role对象", description="")
-public class Role implements Serializable {
+@TableName("t_menu_role")
+@ApiModel(value="MenuRole对象", description="")
+public class MenuRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,11 +31,11 @@ public class Role implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "名称")
-    private String name;
+    @ApiModelProperty(value = "菜单id")
+    private Integer mid;
 
-    @ApiModelProperty(value = "角色名称")
-    private String nameZh;
+    @ApiModelProperty(value = "权限id")
+    private Integer rid;
 
 
 }

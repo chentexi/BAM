@@ -1,6 +1,6 @@
-package com.trent.admin.service;
+package com.trent.system.service.menu;
 
-import com.trent.admin.pojo.MenuRole;
+import com.trent.system.pojo.login.MenuRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
