@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trent.common.utils.result.ResultUtil;
 import com.trent.system.jwt.JwtTokenUtil;
 import com.trent.system.mapper.login.AdminMapper;
-import com.trent.system.pojo.login.Admin;
+import com.trent.system.pojo.admin.Admin;
 import com.trent.system.service.login.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

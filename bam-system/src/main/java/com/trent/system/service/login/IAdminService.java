@@ -3,7 +3,7 @@ package com.trent.system.service.login;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.trent.common.utils.result.ResultUtil;
-import com.trent.system.pojo.login.Admin;
+import com.trent.system.pojo.admin.Admin;
 
 import javax.servlet.http.HttpServletRequest;
 

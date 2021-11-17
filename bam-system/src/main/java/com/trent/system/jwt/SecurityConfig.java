@@ -1,6 +1,6 @@
 package com.trent.system.jwt;
 
-import com.trent.system.pojo.login.Admin;
+import com.trent.system.pojo.admin.Admin;
 import com.trent.system.service.login.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
