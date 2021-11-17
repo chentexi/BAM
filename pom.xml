@@ -49,16 +49,16 @@
         <lombok.version>1.18.20</lombok.version>
         <ip2region.version>1.7.2</ip2region.version>
         <slf4j.verison>1.6.1</slf4j.verison>
-        <pagehelper.version>5.2.1</pagehelper.version>
+        <pagehelper.version>5.3.0</pagehelper.version>
         <pagehelper.spring.boot.version>1.2.3</pagehelper.spring.boot.version>
     </properties>
 
     <dependencies>
         <!--Spring boot 核心-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.springframework.boot</groupId>-->
+        <!--    <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+        <!--</dependency>-->
 
         <!--Spring boot Web容器-->
         <dependency>
@@ -86,11 +86,11 @@
         </dependency>
 
         <!--spring boot 集成redis所需common-pool2-->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-            <version>${commons-pool2.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.apache.commons</groupId>-->
+        <!--    <artifactId>commons-pool2</artifactId>-->
+        <!--    <version>${commons-pool2.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -118,36 +118,36 @@
         </dependency>
 
         <!-- Swagger UI 相关 -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.swagger</groupId>
-                    <artifactId>swagger-annotations</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.swagger</groupId>
-                    <artifactId>swagger-models</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.5.21</version>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-            <version>1.5.21</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>io.springfox</groupId>-->
+        <!--    <artifactId>springfox-swagger2</artifactId>-->
+        <!--    <version>${swagger.version}</version>-->
+        <!--    <exclusions>-->
+        <!--        <exclusion>-->
+        <!--            <groupId>io.swagger</groupId>-->
+        <!--            <artifactId>swagger-annotations</artifactId>-->
+        <!--        </exclusion>-->
+        <!--        <exclusion>-->
+        <!--            <groupId>io.swagger</groupId>-->
+        <!--            <artifactId>swagger-models</artifactId>-->
+        <!--        </exclusion>-->
+        <!--    </exclusions>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>io.springfox</groupId>-->
+        <!--    <artifactId>springfox-swagger-ui</artifactId>-->
+        <!--    <version>${swagger.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>io.swagger</groupId>-->
+        <!--    <artifactId>swagger-annotations</artifactId>-->
+        <!--    <version>1.5.21</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>io.swagger</groupId>-->
+        <!--    <artifactId>swagger-models</artifactId>-->
+        <!--    <version>1.5.21</version>-->
+        <!--</dependency>-->
 
         <!--Mysql依赖包-->
         <dependency>
@@ -193,6 +193,12 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.3.1.tmp</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.jsqlparser</groupId>
+                    <artifactId>jsqlparser</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--<dependency>-->
         <!--    <groupId>com.baomidou</groupId>-->
@@ -206,21 +212,27 @@
         </dependency>
 
         <!-- excel工具 -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.17</version>
-        </dependency>
-        <dependency>
-            <groupId>xerces</groupId>
-            <artifactId>xercesImpl</artifactId>
-            <version>2.12.0</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.apache.poi</groupId>-->
+        <!--    <artifactId>poi</artifactId>-->
+        <!--    <version>3.17</version>-->
+        <!--    <exclusions>-->
+        <!--        <exclusion>-->
+        <!--            <groupId>org.apache.commons</groupId>-->
+        <!--            <artifactId>commons-collections4</artifactId>-->
+        <!--        </exclusion>-->
+        <!--    </exclusions>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>org.apache.poi</groupId>-->
+        <!--    <artifactId>poi-ooxml</artifactId>-->
+        <!--    <version>3.17</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>xerces</groupId>-->
+        <!--    <artifactId>xercesImpl</artifactId>-->
+        <!--    <version>2.12.0</version>-->
+        <!--</dependency>-->
 
         <!-- fastjson -->
         <dependency>
@@ -230,11 +242,11 @@
         </dependency>
 
         <!--mapStruct依赖-->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${mapstruct.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.mapstruct</groupId>-->
+        <!--    <artifactId>mapstruct</artifactId>-->
+        <!--    <version>${mapstruct.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
@@ -260,18 +272,34 @@
             <artifactId>yauaa</artifactId>
             <version>5.23</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.0.1-jre</version>
+        </dependency>
         <!-- swagger2 依赖(用于接口文档) -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.7.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- Swagger第三方ui依赖 -->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>swagger-bootstrap-ui</artifactId>
             <version>1.9.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.javassist</groupId>
+                    <artifactId>javassist</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--JWT 依赖-->
@@ -297,27 +325,18 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
         <!--guawa工具类-->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>27.0.1-jre</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>com.google.guava</groupId>-->
+        <!--    <artifactId>guava</artifactId>-->
+        <!--    <version>27.0.1-jre</version>-->
+        <!--</dependency>-->
         <!--mybatis 分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>${pagehelper.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
-            <version>${pagehelper.spring.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper.spring.boot.version}</version>
-        </dependency>
+
         <!--&lt;!&ndash;mybatis 分页插件2&ndash;&gt;-->
         <!--&lt;!&ndash;mybatis&ndash;&gt;-->
         <!--<dependency>-->
