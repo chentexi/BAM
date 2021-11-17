@@ -28,7 +28,7 @@ import java.util.Map;
  * @since 2021-11-12
  */
 @Service
-public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService{
+public class AdminServiceImpl  implements IAdminService{
 	
 	@Autowired
 	private AdminMapper adminMapper;

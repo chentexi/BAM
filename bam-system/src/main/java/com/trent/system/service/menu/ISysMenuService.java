@@ -15,7 +15,7 @@ import java.util.List;
  * @author Trent
  * @since 2021-11-16
  */
-public interface ISysMenuService extends IService<SysMenu>{
+public interface ISysMenuService {
 	
 	List<SysMenu> getMenuList(Principal principal);
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * @author Trent
  * @since 2021-11-16
  */
-public interface SysMenuMapper extends BaseMapper<SysMenu>{
+public interface SysMenuMapper {
 	
 	List<SysMenu> getMenuListAll();
 }

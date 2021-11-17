@@ -12,7 +12,7 @@ import org.mapstruct.Mapper;
  * @author Trent
  * @since 2021-11-12
  */
-public interface AdminMapper extends BaseMapper<Admin>{
+public interface AdminMapper {
 	Admin login(String userName, String password);
 	
 	Admin selectAdminByName(String userName);

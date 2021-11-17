@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Trent
  * @since 2021-11-12
  */
-public interface IAdminService extends IService<Admin>{
+public interface IAdminService {
 	ResultUtil login(String userName, String password, String captcha, HttpServletRequest request) throws Exception;
 	
 	/**

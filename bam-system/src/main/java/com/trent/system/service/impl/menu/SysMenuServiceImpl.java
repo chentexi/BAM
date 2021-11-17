@@ -25,7 +25,7 @@ import java.util.List;
  * @since 2021-11-16
  */
 @Service
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements ISysMenuService{
+public class SysMenuServiceImpl  implements ISysMenuService{
 	@Autowired
 	private IAdminService adminService;
 	@Autowired
