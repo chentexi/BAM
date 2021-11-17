@@ -61,8 +61,6 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
 	@ApiModelProperty(value = "用户头像")
 	private String userFace;
 	
-	@ApiModelProperty(value = "备注")
-	private String remark;
 	public Boolean isAdmin(){
 		return this.id != null && this.id == 1L;
 	}

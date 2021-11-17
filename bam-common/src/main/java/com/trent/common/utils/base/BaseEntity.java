@@ -1,5 +1,7 @@
 package com.trent.common.utils.base;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -25,10 +27,17 @@ public class BaseEntity implements Serializable{
 	@ApiModelProperty(value = "更新人")
 	private String updateBy;
 	@ApiModelProperty(value = "创建时间")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp createTime;
 	@ApiModelProperty(value = "更新时间")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp updateTime;
 	@ApiModelProperty(value = "备注")
 	private String remark;
+	
+	@TableField(exist = false)
+	private Integer pageNum;
+	@TableField(exist = false)
+	private Integer pageSize;
 	
 }

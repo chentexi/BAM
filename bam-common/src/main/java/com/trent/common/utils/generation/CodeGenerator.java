@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.trent.common.utils.base.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +131,9 @@ public class CodeGenerator {
 		strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
 		strategy.setControllerMappingHyphenStyle(true);
 		//表前缀
-		strategy.setTablePrefix("");
+		strategy.setTablePrefix("t_","");
+		strategy.setSuperEntityClass(BaseEntity.class);
+		strategy.setSuperEntityColumns("create_by","create_time","update_by","update_time","remark");
 		mpg.setStrategy(strategy);
 		mpg.setTemplateEngine(new FreemarkerTemplateEngine());
 		mpg.execute();

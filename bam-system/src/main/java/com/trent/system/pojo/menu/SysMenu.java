@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.trent.common.utils.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -33,7 +34,7 @@ import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 @Accessors(chain = true)
 @TableName("sys_menu")
 @ApiModel(value="SysMenu对象", description="菜单权限表")
-public class SysMenu implements Serializable {
+public class SysMenu extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -75,26 +76,6 @@ public class SysMenu implements Serializable {
     @ApiModelProperty(value = "菜单图标")
     private String icon;
 
-    @ApiModelProperty(value = "创建者")
-    @TableField("create_by")
-    private String createBy;
-
-    @ApiModelProperty(value = "创建时间")
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    @ApiModelProperty(value = "更新者")
-    @TableField("update_by")
-    private String updateBy;
-
-    @ApiModelProperty(value = "更新时间")
-    @TableField(value = "update_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp updateTime;
-
-    @ApiModelProperty(value = "备注")
-    private String remark;
-    
     @ApiModelProperty(value = "子菜单")
     @TableField(exist = false)
     private List<SysMenu> children = new ArrayList<SysMenu>();

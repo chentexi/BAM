@@ -119,16 +119,16 @@
         </dependency>
 
         <!-- druid数据源驱动 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.lionsoul</groupId>
-            <artifactId>ip2region</artifactId>
-            <version>${ip2region.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>com.alibaba</groupId>-->
+        <!--    <artifactId>druid-spring-boot-starter</artifactId>-->
+        <!--    <version>${druid.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>org.lionsoul</groupId>-->
+        <!--    <artifactId>ip2region</artifactId>-->
+        <!--    <version>${ip2region.version}</version>-->
+        <!--</dependency>-->
 
         <!--lombok插件-->
         <dependency>
