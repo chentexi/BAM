@@ -3,14 +3,22 @@ package com.trent.system.pojo.menu;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 /**
  * <p>
@@ -80,11 +88,14 @@ public class SysMenu implements Serializable {
     private String updateBy;
 
     @ApiModelProperty(value = "更新时间")
-    @TableField("update_time")
-    private LocalDateTime updateTime;
+    @TableField(value = "update_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp updateTime;
 
     @ApiModelProperty(value = "备注")
     private String remark;
-
-
+    
+    @ApiModelProperty(value = "子菜单")
+    @TableField(exist = false)
+    private List<SysMenu> children = new ArrayList<SysMenu>();
 }

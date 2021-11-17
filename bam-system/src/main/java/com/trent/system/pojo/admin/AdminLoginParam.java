@@ -1,4 +1,4 @@
-package com.trent.system.pojo.login;
+package com.trent.system.pojo.admin;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

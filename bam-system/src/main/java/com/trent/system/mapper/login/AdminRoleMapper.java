@@ -2,7 +2,7 @@ package com.trent.system.mapper.login;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.trent.system.pojo.login.AdminRole;
+import com.trent.system.pojo.admin.AdminRole;
 
 /**
  * <p>

@@ -1,4 +1,4 @@
-package com.trent.system.pojo.login;
+package com.trent.system.pojo.admin;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;

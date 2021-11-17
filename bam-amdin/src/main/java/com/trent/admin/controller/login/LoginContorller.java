@@ -1,9 +1,8 @@
 package com.trent.admin.controller.login;
 
 import com.trent.common.utils.result.ResultUtil;
-import com.trent.system.mapper.login.AdminMapper;
-import com.trent.system.pojo.login.Admin;
-import com.trent.system.pojo.login.AdminLoginParam;
+import com.trent.system.pojo.admin.Admin;
+import com.trent.system.pojo.admin.AdminLoginParam;
 import com.trent.system.service.login.IAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

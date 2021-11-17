@@ -3,7 +3,7 @@
 <mapper namespace="com.trent.system.mapper.login.AdminMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.trent.system.pojo.login.Admin">
+    <resultMap id="BaseResultMap" type="com.trent.system.pojo.admin.Admin">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="phone" property="phone"/>
