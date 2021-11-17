@@ -16,7 +16,7 @@ public enum CacheModule{
 	 */
 	CAPTCHA("cc","cc"),
 	/**
-	 * mvvg - 平台级用缓存
+	 * 系统
 	 */
 	VPFORM("vm", "vm");
 	

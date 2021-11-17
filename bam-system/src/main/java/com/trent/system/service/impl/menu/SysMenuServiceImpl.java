@@ -1,17 +1,13 @@
 package com.trent.system.service.impl.menu;
 
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trent.system.mapper.menu.SysMenuMapper;
 import com.trent.system.pojo.admin.Admin;
 import com.trent.system.pojo.menu.SysMenu;
-import com.trent.system.service.login.IAdminService;
 import com.trent.system.service.menu.ISysMenuService;
-import nl.basjes.shaded.org.antlr.v4.runtime.atn.AmbiguityInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -26,14 +22,14 @@ import java.util.List;
  */
 @Service
 public class SysMenuServiceImpl  implements ISysMenuService{
-	@Autowired
-	private IAdminService adminService;
+	
 	@Autowired
 	private SysMenuMapper menuMapper;
 	
 	@Override
-	public List<SysMenu> getMenuList(Principal principal){
-		Admin admin = adminService.getAdminByUserName(principal.getName());
+	public List<SysMenu> getMenuList(Admin admin){
+		
+		
 		List<SysMenu> menuList = null;
 		if( admin.isAdmin() ){
 			menuList = menuMapper.getMenuListAll();

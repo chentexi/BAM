@@ -50,6 +50,7 @@ public class RedisConfig{
 		redisTemplate.setKeySerializer(redisSerializer);
 		//4.2value序列化，因为我们的value大多是通过对象转化过来的，所以使用jackson2JsonRedisSerializer
 		redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+		redisTemplate.setHashKeySerializer(redisSerializer);
 		//4.3value序列化，hashmap的序列话
 		redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
 		return redisTemplate;

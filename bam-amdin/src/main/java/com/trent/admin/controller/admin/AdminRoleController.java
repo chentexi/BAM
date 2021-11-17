@@ -1,4 +1,4 @@
-package com.trent.admin.controller;
+package com.trent.admin.controller.admin;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-11-12
  */
 @RestController
-@RequestMapping("/salary-adjust")
-public class SalaryAdjustController {
+@RequestMapping("/admin-role")
+public class AdminRoleController {
 
 }

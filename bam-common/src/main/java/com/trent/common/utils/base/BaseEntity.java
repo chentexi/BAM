@@ -40,4 +40,6 @@ public class BaseEntity implements Serializable{
 	@TableField(exist = false)
 	private Integer pageSize;
 	
+	
+	public void dd(){}
 }

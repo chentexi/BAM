@@ -50,7 +50,7 @@ public class LoginContorller{
 	@PostMapping("/logout")
 	public ResultUtil logout() {
 		//前端收到状态码,删除客户端的token
-		return ResultUtil.success("注销成功！");
+		return ResultUtil.ok("注销成功！");
 	}
 	
 }

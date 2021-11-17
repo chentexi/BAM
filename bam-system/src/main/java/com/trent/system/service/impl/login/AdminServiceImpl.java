@@ -55,10 +55,10 @@ public class AdminServiceImpl  implements IAdminService{
 		
 		UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 		if( null == userDetails || !passwordEncoder.matches(passWord, userDetails.getPassword()) ){
-			return ResultUtil.error("用户名或密码不正确!");
+			return ResultUtil.fail("用户名或密码不正确!");
 		}
 		if( !userDetails.isEnabled() ){
-			return ResultUtil.error("账号被禁用，请联系管理员!");
+			return ResultUtil.fail("账号被禁用，请联系管理员!");
 		}
 		//更新secret登录用户对象
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -69,7 +69,8 @@ public class AdminServiceImpl  implements IAdminService{
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("token", token);
 		tokenMap.put("tokenHead", tokenHead);
-		return ResultUtil.success(tokenMap);
+		ResultUtil ok = ResultUtil.ok(tokenMap);
+		return ok;
 	}
 	/**
 	 * 根据用户名获取用户

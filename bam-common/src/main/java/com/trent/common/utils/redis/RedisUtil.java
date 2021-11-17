@@ -42,7 +42,6 @@ public class RedisUtil{
 	public void delete(String key) {
 		redisTemplate.delete(key);
 	}
-	
 	/**
 	 * 批量删除key
 	 *

@@ -1,10 +1,9 @@
 package com.trent.system.service.menu;
 
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.trent.system.pojo.admin.Admin;
 import com.trent.system.pojo.menu.SysMenu;
 
-import java.security.Principal;
 import java.util.List;
 
 /**
@@ -17,5 +16,5 @@ import java.util.List;
  */
 public interface ISysMenuService {
 	
-	List<SysMenu> getMenuList(Principal principal);
+	List<SysMenu> getMenuList(Admin admin);
 }
