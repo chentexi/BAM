@@ -47,7 +47,7 @@ public class CaptchaController{
 		// 定义response输出类型为image/jpeg类型
 		response.setDateHeader("Expires", 0);
 		// Set standard HTTP/1.1 no-cache headers.
-		response.setHeader("Cache-Control", "no-store, no-cache, mustrevalidate");
+		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		// Set IE extended HTTP/1.1 no-cache headers (use addHeader).
 		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
 		// Set standard HTTP/1.0 no-cache header.
@@ -87,21 +87,15 @@ public class CaptchaController{
 	}
 	@ApiOperation(value = "png类型验证码")
 	@GetMapping(value = "/images/captchaPng", produces = "image/png")
-	public void captchaPng(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		//动态验证码
-		GifCaptcha gifCaptcha = new GifCaptcha(130,48,4);
-		//中文验证码
-		ChineseCaptcha chineseCaptchaAbstract = new ChineseCaptcha(130,28,4);
-		//算术验证码
-		ArithmeticCaptcha arithmeticCaptcha = new ArithmeticCaptcha(130 , 28 , 4);
+	public void captchaPng(String key,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		//静态验证码
 		SpecCaptcha specCaptcha = new SpecCaptcha(130,48,4);
 		String verCode = specCaptcha.text().toLowerCase();
-		String key = UUID.randomUUID().toString();
+		
 		log.info("图片验证码()png类型生成的redis的key为: {},生成的验证码为: {}",key,verCode);
-		// 存入redis并设置过期时间为30分钟
+		// 存入redis并设置过期时间为5分钟
 		redisUtil.set(key, verCode);
-		redisUtil.expire(key, 30, TimeUnit.MINUTES);
+		redisUtil.expire(key, 5, TimeUnit.MINUTES);
 		CaptchaUtil.out(specCaptcha,request, response);
 		
 	}

@@ -1,7 +1,6 @@
 package com.trent.system.service.login;
 
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.trent.common.utils.result.ResultUtil;
 import com.trent.system.pojo.admin.Admin;
 
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2021-11-12
  */
 public interface IAdminService {
-	ResultUtil login(String userName, String password, String captcha, HttpServletRequest request) throws Exception;
+	ResultUtil login(String userName, String password, String captcha, String captchFlag, HttpServletRequest request) throws Exception;
 	
 	/**
 	 * 获取当前用户信息

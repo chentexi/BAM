@@ -71,6 +71,9 @@ public class ResultUtil{
 		this.code = code;
 		this.data = data;
 	}
+	public static ResultUtil ok(){
+		return new ResultUtil(true,"操作成功",200);
+	}
 	public static ResultUtil ok(String msg){
 		return new ResultUtil(msg);
 	}
@@ -94,7 +97,7 @@ public class ResultUtil{
 	}
 	
 	public static ResultUtil fail(String msg){
-		return new ResultUtil(msg);
+		return new ResultUtil(false,msg);
 	}
 	public static ResultUtil fail(Object data){
 		return new ResultUtil(data);

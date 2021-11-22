@@ -23,4 +23,6 @@ public class AdminLoginParam{
 	private String passWord;
 	@ApiModelProperty(value = "验证码",required = true)
 	private String captcha;
+	@ApiModelProperty(value = "验证码的key",required = true)
+	private String captchFlag;
 }

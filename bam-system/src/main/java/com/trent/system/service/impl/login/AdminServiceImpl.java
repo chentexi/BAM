@@ -1,11 +1,12 @@
 package com.trent.system.service.impl.login;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.trent.common.utils.redis.RedisUtil;
 import com.trent.common.utils.result.ResultUtil;
 import com.trent.system.jwt.JwtTokenUtil;
 import com.trent.system.mapper.login.AdminMapper;
 import com.trent.system.pojo.admin.Admin;
 import com.trent.system.service.login.IAdminService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,13 +32,15 @@ import java.util.Map;
 public class AdminServiceImpl  implements IAdminService{
 	
 	@Autowired
-	private AdminMapper adminMapper;
-	@Autowired
 	private UserDetailsService userDetailsService;
+	@Autowired
+	private AdminMapper adminMapper;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
+	@Autowired
+	private RedisUtil redisUtil;
 	@Value("${jwt.tokenHead}")
 	private String tokenHead;
 	
@@ -47,13 +50,18 @@ public class AdminServiceImpl  implements IAdminService{
 	 * @param userName
 	 * @param passWord
 	 * @param captcha
+	 * @param captchFlag
 	 * @return
 	 */
 	@Override
-	public ResultUtil login(String userName, String passWord, String captcha, HttpServletRequest request) throws Exception{
+	public ResultUtil login(String userName, String passWord, String captcha, String captchFlag, HttpServletRequest request) throws Exception{
 		//验证验证码从redis里面取
 		
 		UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+		if( StringUtils.isBlank(captcha)||StringUtils.isBlank(captchFlag)|| !captcha.toLowerCase().equals(redisUtil.get(captchFlag))){
+			redisUtil.delete(captchFlag);
+			return ResultUtil.fail("验证码有误,请重新输入验证码!");
+		}
 		if( null == userDetails || !passwordEncoder.matches(passWord, userDetails.getPassword()) ){
 			return ResultUtil.fail("用户名或密码不正确!");
 		}
@@ -69,8 +77,11 @@ public class AdminServiceImpl  implements IAdminService{
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("token", token);
 		tokenMap.put("tokenHead", tokenHead);
-		ResultUtil ok = ResultUtil.ok(tokenMap);
-		return ok;
+		
+		//删除验证码缓存
+		redisUtil.delete(captchFlag);
+		
+		return ResultUtil.ok(tokenMap);
 	}
 	/**
 	 * 根据用户名获取用户
