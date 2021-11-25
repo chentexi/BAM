@@ -92,7 +92,7 @@ public class CaptchaController{
 		SpecCaptcha specCaptcha = new SpecCaptcha(130,48,4);
 		String verCode = specCaptcha.text().toLowerCase();
 		
-		log.info("图片验证码()png类型生成的redis的key为: {},生成的验证码为: {}",key,verCode);
+		log.info("图片验证码()[png类型]生成的redis的key为: {},生成的验证码为: {}",key,verCode);
 		// 存入redis并设置过期时间为5分钟
 		redisUtil.set(key, verCode);
 		redisUtil.expire(key, 5, TimeUnit.MINUTES);
@@ -144,18 +144,19 @@ public class CaptchaController{
 	}
 	@ApiOperation(value = "compute类型验证码")
 	@GetMapping(value = "/images/captchaCompute",produces = "image/png")
-	public void captchaCompute(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
+	public void captchaCompute(String key,HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
 		
 		// 算术类型
 		ArithmeticCaptcha captcha = new ArithmeticCaptcha(130, 48);
 		
-		captcha.setLen(3);  // 几位数运算，默认是两位
+		captcha.setLen(2);  // 几位数运算，默认是两位
 		captcha.getArithmeticString();  // 获取运算的公式：4-9+1=?
 		String text = captcha.text();// 获取运算的结果：-4
-		
-		System.out.println("计算结果为："+text);
+		log.info("图片验证码()[计算类型]生成的redis的key为: {},生成的验证码为: {}",key,text);
+		redisUtil.set(key,text);
+		redisUtil.expire(key,300,TimeUnit.SECONDS);
 		// 输出验证码
-		captcha.out(response.getOutputStream());
+		CaptchaUtil.out(captcha,request, response);
 	}
 	public static void main(String[] args){
 		// 三个参数分别为宽、高、位数

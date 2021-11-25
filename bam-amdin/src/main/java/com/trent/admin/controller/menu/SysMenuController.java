@@ -65,7 +65,7 @@ public class SysMenuController {
 			return ResultMapUtil.success("成功",menuList);
 		}else{
 			menuList= menuService.getMenuList(admin);
-			redisUtil.set(key,JSON.toJSONString(menuList));
+			//redisUtil.set(key,JSON.toJSONString(menuList));
 		}
 		return ResultMapUtil.success("成功",menuList);
 	}

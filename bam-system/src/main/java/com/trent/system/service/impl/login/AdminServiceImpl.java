@@ -77,6 +77,7 @@ public class AdminServiceImpl  implements IAdminService{
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("token", token);
 		tokenMap.put("tokenHead", tokenHead);
+		System.out.println("token:"+tokenHead+token);
 		
 		//删除验证码缓存
 		redisUtil.delete(captchFlag);

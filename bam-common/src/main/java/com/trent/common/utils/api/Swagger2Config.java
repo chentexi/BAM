@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Swagger2配置
+ * Swagger2配置 接口测试文档
  *
  * @author zhoubin
  * @since 1.0.0
