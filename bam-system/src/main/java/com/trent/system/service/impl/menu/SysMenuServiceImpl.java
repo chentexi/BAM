@@ -1,6 +1,5 @@
 package com.trent.system.service.impl.menu;
 
-
 import com.trent.system.mapper.menu.SysMenuMapper;
 import com.trent.system.pojo.admin.Admin;
 import com.trent.system.pojo.menu.SysMenu;

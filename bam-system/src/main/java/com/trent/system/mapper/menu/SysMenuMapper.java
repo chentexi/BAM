@@ -1,9 +1,8 @@
 package com.trent.system.mapper.menu;
 
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.trent.system.pojo.menu.SysMenu;
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -15,6 +14,7 @@ import java.util.List;
  * @author Trent
  * @since 2021-11-16
  */
+@Repository
 public interface SysMenuMapper {
 	
 	List<SysMenu> getMenuListAll();
