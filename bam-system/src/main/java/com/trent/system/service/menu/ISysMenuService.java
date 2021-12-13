@@ -17,4 +17,6 @@ import java.util.List;
 public interface ISysMenuService {
 	
 	List<SysMenu> getMenuList(Admin admin);
+	
+	int delectMenuById(Integer id);
 }

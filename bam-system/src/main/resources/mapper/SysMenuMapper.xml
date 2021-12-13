@@ -29,12 +29,21 @@
     <sql id="Menu_List">
         menu_id, parent_id, menu_name, order_num, url, component, menu_type, visible, perms, enable, icon, remark
     </sql>
-    <select id="getMenuListAll" resultMap="BaseResultMap">
+    <select id="getMenuListAll"  resultMap="BaseResultMap">
         select
         <include refid="Menu_List"/>
         from sys_menu
         where menu_type in ('M', 'C') and visible = 0
         order by menu_id
     </select>
+    <select id="getMenuListById" parameterType="integer"  resultMap="BaseResultMap">
+        select
+        <include refid="Menu_List"/>
+        from bam.sys_menu
+        where menu_id=#{id} or parent_id =#{id}
+    </select>
+    <delete id="delectMenuById" parameterType="arraylist">
+        delete from sys_menu where menu_id=#{id} or parent_id =#{id}
+    </delete>
 
 </mapper>

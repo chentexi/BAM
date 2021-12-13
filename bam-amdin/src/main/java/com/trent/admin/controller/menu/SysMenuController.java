@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -73,6 +74,17 @@ public class SysMenuController {
 	@PostMapping("/save")
 	public ResultUtil saveMenu(){
 		return null;
+	}
+	
+	@ApiOperation(value = "菜单删除")
+	@GetMapping("/delect")
+	public ResultUtil delectMenu(Integer id, Principal principal){
+		
+		int result = menuService.delectMenuById(id);
+		if( ResultUtil.CODE_UPDATE_DEL_STATUS==result ){
+			return ResultUtil.ok() ;
+		}
+		return ResultUtil.fail("删除失败!请联系管理员!");
 	}
 	
 }

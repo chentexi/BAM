@@ -15,6 +15,7 @@ import org.apache.poi.ss.formula.functions.T;
 @Setter
 public class ResultUtil{
 	public static final Integer CODE_SUCCESS = 200;
+	public static final Integer CODE_UPDATE_DEL_STATUS=1;
 	
 	private static final long serialVersionUID = -2436709332711007968L;
 	

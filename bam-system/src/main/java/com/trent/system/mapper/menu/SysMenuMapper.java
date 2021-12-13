@@ -18,4 +18,8 @@ import java.util.List;
 public interface SysMenuMapper {
 	
 	List<SysMenu> getMenuListAll();
+	
+	int delectMenuById(Integer id);
+	
+	List<SysMenu> getMenuListById(Integer id);
 }
