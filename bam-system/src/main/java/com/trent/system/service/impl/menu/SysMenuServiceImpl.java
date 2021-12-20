@@ -50,10 +50,8 @@ public class SysMenuServiceImpl implements ISysMenuService{
 			List<SysMenu> menus =new ArrayList<>();
 	        getChilds(menuList, sysMenuList,menus);
 			menuList=menus;
-			return getChildPerms(menuList, menuList.get(0).getParentId());
 		}
-		System.out.println(menuList);
-		return getChildPerms(menuList, 0);
+		return getChildPerms(menuList, menuList.get(0).getParentId());
 	}
 	private void getChilds(List<SysMenu> menuList, List<SysMenu> sysMenuList,List<SysMenu> menus){
 		menus.addAll(menuList);
