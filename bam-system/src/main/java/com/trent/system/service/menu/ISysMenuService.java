@@ -19,4 +19,16 @@ public interface ISysMenuService {
 	List<SysMenu> getMenuList(Admin admin);
 	
 	int delectMenuById(Integer id);
+	
+	int updateMenuVisible(String menuId, String visible);
+	
+	int updateMenuVisible(SysMenu sysMenu);
+	
+	List<SysMenu> getMenuLists(SysMenu sysMenuParams, Admin admin);
+	
+	int updateEnable(String menuId, String enable);
+	
+	int addMenu(SysMenu sysMenu);
+	
+	int updateMenu(SysMenu sysMenu);
 }

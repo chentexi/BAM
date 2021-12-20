@@ -65,7 +65,7 @@ public class SysMenu extends BaseEntity implements Serializable {
     private String perms;
 
     @ApiModelProperty(value = "是否启用")
-    private Boolean enable;
+    private String enable;
 
     @ApiModelProperty(value = "菜单图标")
     private String icon;

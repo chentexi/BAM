@@ -30,7 +30,7 @@
         <include refid="Base_Column_List"/>
         from sys_admin
         <where>
-            username ='admin'
+            username =#{userName}
             and enabled=1
         </where>
     </select>

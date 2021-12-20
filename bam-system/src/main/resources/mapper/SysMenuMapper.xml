@@ -29,21 +29,62 @@
     <sql id="Menu_List">
         menu_id, parent_id, menu_name, order_num, url, component, menu_type, visible, perms, enable, icon, remark
     </sql>
-    <select id="getMenuListAll"  resultMap="BaseResultMap">
+    <insert id="addMenu">
+        insert into bam.sys_menu (<include refid="Base_Column_List"/>)
+        values (#{menuId},#{parentId},#{menuName},#{orderNum},#{url},#{component},#{menuType},#{visible},#{perms},#{enable},#{icon},#{createBy},#{createTime},#{updateBy},#{updateTime},#{remark})
+    </insert>
+
+    <select id="getMenuListAll" resultMap="BaseResultMap">
         select
         <include refid="Menu_List"/>
         from sys_menu
         where menu_type in ('M', 'C') and visible = 0
         order by menu_id
     </select>
-    <select id="getMenuListById" parameterType="integer"  resultMap="BaseResultMap">
+    <select id="getMenuListById" parameterType="integer" resultMap="BaseResultMap">
         select
         <include refid="Menu_List"/>
         from bam.sys_menu
-        where menu_id=#{id} or parent_id =#{id}
+        where parent_id =#{id} and menu_type in ('M', 'C')
+    </select>
+    <select id="getMenuLists" resultMap="BaseResultMap">
+        select
+        <include refid="Menu_List"/>
+        from sys_menu
+        <where>
+            and menu_type in ('M','C')
+            <if test="menuName!=null and menuName!=''">
+                and menu_name like concat('%',#{menuName},'%')
+            </if>
+        </where>
+        order by menu_id
     </select>
     <delete id="delectMenuById" parameterType="arraylist">
-        delete from sys_menu where menu_id=#{id} or parent_id =#{id}
+        delete from sys_menu where menu_id = #{id} or parent_id = #{id}
     </delete>
-
+    <update id="updateMenuVisible">
+        update bam.sys_menu set bam.sys_menu.visible=#{visible} where menu_id = #{menuId}
+    </update>
+    <update id="updateEnable">
+        update bam.sys_menu set sys_menu.enable=#{enable} where menu_id = #{menuId}
+    </update>
+    <update id="updateMenu">
+        update bam.sys_menu
+        <set>
+            <if test="parentId">parent_id=#{parentId},</if>
+            <if test="menuName">menu_name=#{menuName},</if>
+            <if test="orderNum">order_num=#{orderNum},</if>
+            <if test="url">url=#{url},</if>
+            <if test="component">component=#{component},</if>
+            <if test="menuType">menu_type=#{menuType},</if>
+            <if test="visible">visible=#{visible},</if>
+            <if test="perms">perms=#{perms},</if>
+            <if test="enable">enable=#{enable},</if>
+            <if test="icon">icon=#{icon},</if>
+            <if test="updateBy">update_by=#{updateBy},</if>
+            <if test="updateTime">update_time=#{updateTime},</if>
+            <if test="remark">remark=#{remark}</if>
+        </set>
+        where sysMenu.menu_id=#{menuId}
+    </update>
 </mapper>

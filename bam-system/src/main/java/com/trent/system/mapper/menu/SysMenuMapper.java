@@ -22,4 +22,17 @@ public interface SysMenuMapper {
 	int delectMenuById(Integer id);
 	
 	List<SysMenu> getMenuListById(Integer id);
+	
+	int updateMenuVisible(String menuId, String visible);
+	
+	int updateMenuVisible(SysMenu sysMenu);
+	
+	List<SysMenu> getMenuLists(SysMenu sysMenuParams);
+	
+	int updateEnable(String menuId, String enable);
+	
+	int addMenu(SysMenu sysMenu);
+	
+	int updateMenu(SysMenu sysMenu);
+	
 }

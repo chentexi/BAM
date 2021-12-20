@@ -4,8 +4,10 @@ import com.trent.system.mapper.menu.SysMenuMapper;
 import com.trent.system.pojo.admin.Admin;
 import com.trent.system.pojo.menu.SysMenu;
 import com.trent.system.service.menu.ISysMenuService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,6 +39,46 @@ public class SysMenuServiceImpl implements ISysMenuService{
 		return getChildPerms(menuList, 0);
 	}
 	
+	@Override
+	public List<SysMenu> getMenuLists(SysMenu sysMenuParams, Admin admin){
+		List<SysMenu> menuList = null;
+		if( admin.isAdmin() ){
+			menuList = menuMapper.getMenuLists(sysMenuParams);
+		}
+		if( StringUtils.isNotBlank(sysMenuParams.getMenuName()) ){
+			List<SysMenu> sysMenuList = new ArrayList<>();
+			List<SysMenu> menus =new ArrayList<>();
+	        getChilds(menuList, sysMenuList,menus);
+			menuList=menus;
+			return getChildPerms(menuList, menuList.get(0).getParentId());
+		}
+		System.out.println(menuList);
+		return getChildPerms(menuList, 0);
+	}
+	private void getChilds(List<SysMenu> menuList, List<SysMenu> sysMenuList,List<SysMenu> menus){
+		menus.addAll(menuList);
+		menuList.forEach(o -> {
+			setChilders(o, sysMenuList,menus);
+		});
+		
+	}
+	public boolean whetherChildrenMenu(Integer id){
+		List<SysMenu> sysMenus = menuMapper.getMenuListById(id);
+		return CollectionUtils.isEmpty(sysMenus);
+	}
+	
+	public void setChilders(SysMenu sysMenu, List<SysMenu> menuList,List<SysMenu> menus){
+		List<SysMenu> menuListById = menuMapper.getMenuListById(sysMenu.getMenuId());
+		//sysMenu.setChildren(menuListById);
+		//menus.add(sysMenu);
+		menuListById.forEach(o -> {
+			menus.add(o);
+			if( !whetherChildrenMenu(o.getMenuId()) ){
+				setChilders(o, menuMapper.getMenuListById(o.getMenuId()),menus);
+			}
+		});
+		
+	}
 	/**
 	 * 根据父节点的ID获取所有子节点
 	 *
@@ -104,5 +146,27 @@ public class SysMenuServiceImpl implements ISysMenuService{
 	@Override
 	public int delectMenuById(Integer id){
 		return menuMapper.delectMenuById(id);
+	}
+	
+	@Override
+	public int updateMenuVisible(String menuId, String visible){
+		return menuMapper.updateMenuVisible(menuId, visible);
+	}
+	@Override
+	public int updateMenuVisible(SysMenu sysMenu){
+		return menuMapper.updateMenuVisible(sysMenu);
+	}
+	@Override
+	public int updateEnable(String menuId, String enable){
+		return menuMapper.updateEnable(menuId, enable);
+	}
+	
+	@Override
+	public int addMenu(SysMenu sysMenu){
+		return menuMapper.addMenu(sysMenu);
+	}
+	@Override
+	public int updateMenu(SysMenu sysMenu){
+		return menuMapper.updateMenu(sysMenu);
 	}
 }

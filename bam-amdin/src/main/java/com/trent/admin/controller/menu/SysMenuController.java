@@ -2,7 +2,8 @@ package com.trent.admin.controller.menu;
 
 
 import com.alibaba.fastjson.JSON;
-import com.trent.common.CurrentUser;
+import com.trent.admin.CurrentUser;
+import com.trent.common.utils.date.DateNewUtil;
 import com.trent.common.utils.redis.CacheModule;
 import com.trent.common.utils.redis.CacheScope;
 import com.trent.common.utils.redis.KeyUtil;
@@ -15,23 +16,22 @@ import com.trent.system.service.login.IAdminService;
 import com.trent.system.service.menu.ISysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.locks.Condition;
 
 /**
  * <p>
@@ -44,7 +44,7 @@ import java.util.concurrent.locks.Condition;
 @RestController
 @Api(tags = "SysMenuController")
 @RequestMapping("/menu")
-public class SysMenuController {
+public class SysMenuController{
 	@Autowired
 	private ISysMenuService menuService;
 	@Autowired
@@ -54,22 +54,53 @@ public class SysMenuController {
 	
 	@ApiOperation(value = "菜单列表")
 	@GetMapping("/menuList")
-	public Map<String,Object> getMenuList(Principal principal){
-		if( principal==null ){
+	public Map<String, Object> getMenuList( Principal principal){
+		if( principal == null ){
 			return ResultMapUtil.fail("请先登录!");
 		}
-		Admin admin = (Admin) CurrentUser.currentAdminInfo();
+		Admin admin = CurrentUser.currentAdminInfo();
 		
 		String key = KeyUtil.formatKey(CacheModule.VPFORM, CacheScope.CACHE, "menu_" + admin.getId());
-		List<SysMenu> menuList =JSON.parseArray(redisUtil.get(key),SysMenu.class);
+		List<SysMenu> menuList = JSON.parseArray(redisUtil.get(key), SysMenu.class);
 		if( !CollectionUtils.isEmpty(menuList) ){
-			return ResultMapUtil.success("成功",menuList);
+			return ResultMapUtil.success("成功", menuList);
 		}else{
-			menuList= menuService.getMenuList(admin);
+			menuList = menuService.getMenuList(admin);
 			//redisUtil.set(key,JSON.toJSONString(menuList));
 		}
-		return ResultMapUtil.success("成功",menuList);
+		return ResultMapUtil.success("成功", menuList);
 	}
+	
+	@ApiOperation(value = "所有菜单列表")
+	@PostMapping("/menuLists")
+	public Map<String, Object> getMenuLists(@RequestBody SysMenu sysMenuParams){
+		Admin principal = CurrentUser.currentAdminInfo();
+		if( principal == null ){
+			return ResultMapUtil.fail("请先登录!");
+		}
+		
+		String key = KeyUtil.formatKey(CacheModule.VPFORM, CacheScope.CACHE, "menu_" + principal.getId());
+		List<SysMenu> menuList = JSON.parseArray(redisUtil.get(key), SysMenu.class);
+		if( !CollectionUtils.isEmpty(menuList) ){
+			return ResultMapUtil.success("成功", menuList);
+		}else{
+			menuList = menuService.getMenuLists(sysMenuParams,principal);
+			//redisUtil.set(key,JSON.toJSONString(menuList));
+		}
+		SysMenu sysMenu=new SysMenu();
+		sysMenu.setMenuId(0);
+		sysMenu.setMenuName("顶级类目");
+		sysMenu.setChildren(menuList);
+		
+		List<SysMenu> sysMenus=new ArrayList<>();
+		sysMenus.add(sysMenu);
+		
+		Map<String,Object> objectMap =new HashMap<>(2);
+		objectMap.put("data",menuList);
+		objectMap.put("mainMenu",sysMenus);
+		return ResultMapUtil.success("成功", objectMap);
+	}
+	
 	@ApiOperation(value = "保存/修改")
 	@PostMapping("/save")
 	public ResultUtil saveMenu(){
@@ -81,10 +112,60 @@ public class SysMenuController {
 	public ResultUtil delectMenu(Integer id, Principal principal){
 		
 		int result = menuService.delectMenuById(id);
-		if( ResultUtil.CODE_UPDATE_DEL_STATUS==result ){
-			return ResultUtil.ok() ;
+		if( ResultUtil.CODE_UPDATE_DEL_STATUS == result ){
+			return ResultUtil.ok();
 		}
 		return ResultUtil.fail("删除失败!请联系管理员!");
 	}
+	
+	@ApiOperation(value = "更改菜单显示")
+	@PostMapping("/updateVisible")
+	public ResultUtil updateVisible(@RequestParam("menuId") String menuId,@RequestParam("visible") String visible){
+		int reslut = menuService.updateMenuVisible(menuId,visible);
+		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
+			return ResultUtil.ok("操作成功");
+		}else {
+		    return ResultUtil.fail("修改失败!请联系管理员!");
+		}
+	}
+	
+	@ApiOperation(value = "更改菜单是否启用")
+	@PostMapping("/updateEnable")
+	public ResultUtil updateEnable(@RequestParam("menuId") String menuId,@RequestParam String enable){
+		int reslut = menuService.updateEnable(menuId,enable);
+		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
+			return ResultUtil.ok("操作成功");
+		}else {
+			return ResultUtil.fail("修改失败!请联系管理员!");
+		}
+	}
+	
+	@ApiOperation(value = "添加菜单")
+	@PostMapping("/addMenu")
+	public ResultUtil addMenu(@RequestBody SysMenu sysMenu){
+		sysMenu.setCreateBy(CurrentUser.currentAdminInfo().getName());
+		sysMenu.setCreateTime(DateNewUtil.getCurrentDate());
+		int reslut= menuService.addMenu(sysMenu);
+		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
+			return ResultUtil.ok("操作成功!");
+		}else{
+			return ResultUtil.fail("添加失败!");
+		}
+	}
+	
+	
+	@ApiOperation(value = "编辑菜单")
+	@PostMapping("/updateMenu")
+	public ResultUtil updateMenu(@RequestBody SysMenu sysMenu){
+		sysMenu.setUpdateBy(CurrentUser.currentAdminInfo().getName());
+		sysMenu.setUpdateTime(DateNewUtil.getCurrentDate());
+		int reslut= menuService.updateMenu(sysMenu);
+		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
+			return ResultUtil.ok("操作成功!");
+		}else{
+			return ResultUtil.fail("添加失败!");
+		}
+	}
+	
 	
 }

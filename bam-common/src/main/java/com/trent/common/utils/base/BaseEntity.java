@@ -10,6 +10,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @Author: Trent
@@ -28,10 +29,10 @@ public class BaseEntity implements Serializable{
 	private String updateBy;
 	@ApiModelProperty(value = "创建时间")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp createTime;
+	private LocalDateTime createTime;
 	@ApiModelProperty(value = "更新时间")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp updateTime;
+	private LocalDateTime  updateTime;
 	@ApiModelProperty(value = "备注")
 	private String remark;
 	
