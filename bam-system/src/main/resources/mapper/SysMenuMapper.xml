@@ -85,6 +85,6 @@
             <if test="updateTime">update_time=#{updateTime},</if>
             <if test="remark">remark=#{remark}</if>
         </set>
-        where sysMenu.menu_id=#{menuId}
+        where menu_id=#{menuId}
     </update>
 </mapper>
