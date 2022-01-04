@@ -23,4 +23,17 @@ public interface IAdminService {
 	 * @return
 	 */
 	Admin getAdminByUserName(String userName);
+	
+	/**
+	 * 获取用户信息表
+	 * @param admin
+	 * @return
+	 */
+	ResultUtil findAdmin(Admin admin);
+	
+	int addAdmin(Admin admin);
+	
+	int updateAdmin(Admin admin);
+	
+	int upadteEnabled(Admin admin);
 }

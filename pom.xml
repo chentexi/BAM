@@ -9,6 +9,8 @@
     <version>0.0.1</version>
     <name>BAM</name>
     <description>Demo project for Spring Boot</description>
+
+
     <!--模块-->
     <modules>
         <module>bam-amdin</module>
@@ -25,6 +27,25 @@
         <version>2.5.1</version>
         <relativePath/>
     </parent>
+
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.active>prod</spring.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.active>dev</spring.active>
+            </properties>
+        </profile>
+    </profiles>
     <!--版本号-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,7 +58,7 @@
         <druid.version>1.2.6</druid.version>
         <HikariCP.version>4.0.3</HikariCP.version>
         <log4jdbc.version>1.16</log4jdbc.version>
-        <logback.version>1.1.11</logback.version>
+        <logback.version>1.2.10</logback.version>
         <shiro.version>1.7.1</shiro.version>
         <mysql.version>5.1.41</mysql.version>
         <spring-web.version>5.3.8</spring-web.version>
@@ -51,6 +72,8 @@
         <slf4j.verison>1.6.1</slf4j.verison>
         <pagehelper.version>5.3.0</pagehelper.version>
         <pagehelper.spring.boot.version>1.2.3</pagehelper.spring.boot.version>
+        <pagehelper.starter.version>1.4.1</pagehelper.starter.version>
+        <huTool.version>5.7.18</huTool.version>
     </properties>
 
     <dependencies>
@@ -141,6 +164,12 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis-spring</artifactId>
+                </exclusion>
+            </exclusions>
             <version>3.3.1.tmp</version>
         </dependency>
 
@@ -154,6 +183,10 @@
                 <exclusion>
                     <groupId>com.github.jsqlparser</groupId>
                     <artifactId>jsqlparser</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis-spring</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -285,10 +318,29 @@
         <!--mybatis 分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>${pagehelper.version}</version>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.starter.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>compile</scope>
         </dependency>
 
+        <!--<dependency>-->
+        <!--    <groupId>com.github.pagehelper</groupId>-->
+        <!--    <artifactId>pagehelper</artifactId>-->
+        <!--    <version>${pagehelper.version}</version>-->
+        <!--</dependency>-->
+
+        <!--工具类HuTool-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${huTool.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

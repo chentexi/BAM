@@ -11,8 +11,11 @@ import java.util.Collection;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -60,7 +63,9 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
     private String email;
 
     @ApiModelProperty(value = "是否启用")
-    private Boolean enabled;
+    @Getter(value = AccessLevel.NONE)
+    //@Setter(value = AccessLevel.NONE)
+    private boolean enabled;
 
     @ApiModelProperty(value = "用户名")
     private String userName;
@@ -71,18 +76,9 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
     @ApiModelProperty(value = "用户头像")
     private String userFace;
 
-    @ApiModelProperty(value = "创建人")
-    private String createBy;
-
-    @ApiModelProperty(value = "更改人")
-    private String updateBy;
-
-    @ApiModelProperty(value = "创建时间")
-    private LocalDateTime createTime;
-
-    @ApiModelProperty(value = "更新时间")
-    private LocalDateTime updateTime;
     
+    public Admin(){
+    }
     public Boolean isAdmin(){
         return this.id != null && this.id == 1L;
     }
@@ -114,6 +110,11 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
     }
     @Override
     public boolean isEnabled(){
-        return enabled;
+        //return false;
+        
+        return this.enabled;
     }
+    //public Boolean getEnabled(){
+    //    return enabled;
+    //}
 }

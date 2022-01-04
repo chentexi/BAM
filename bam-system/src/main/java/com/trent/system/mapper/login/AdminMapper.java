@@ -1,8 +1,9 @@
 package com.trent.system.mapper.login;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.trent.system.pojo.admin.Admin;
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,8 +13,13 @@ import org.mapstruct.Mapper;
  * @author Trent
  * @since 2021-11-12
  */
+@Repository
 public interface AdminMapper {
 	Admin login(String userName, String password);
 	
 	Admin selectAdminByName(String userName);
+	
+	List<Admin> findAdmin(Admin admin);
+	
+	int upadteEnabled(Admin admin);
 }

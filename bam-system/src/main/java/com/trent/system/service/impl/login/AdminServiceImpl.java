@@ -1,5 +1,7 @@
 package com.trent.system.service.impl.login;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.trent.common.utils.redis.RedisUtil;
 import com.trent.common.utils.result.ResultUtil;
 import com.trent.system.jwt.JwtTokenUtil;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -92,7 +95,35 @@ public class AdminServiceImpl  implements IAdminService{
 	 */
 	@Override
 	public Admin getAdminByUserName(String userName){
-		return adminMapper.selectAdminByName(userName);
+		Admin admin = adminMapper.selectAdminByName(userName);
+		return admin;
 	}
 	
+	/**
+	 * 获取用户信息表
+	 * @param admin
+	 * @return
+	 */
+	@Override
+	public ResultUtil findAdmin(Admin admin){
+		PageHelper.startPage(admin.getCurrentPage(),admin.getPageSize());
+		List<Admin> list = adminMapper.findAdmin(admin);
+		PageInfo pageInfo = new PageInfo(list);
+		return ResultUtil.ok(pageInfo);
+	}
+	
+	
+	@Override
+	public int addAdmin(Admin admin){
+		return 0;
+	}
+	
+	@Override
+	public int updateAdmin(Admin admin){
+		return 0;
+	}
+	@Override
+	public int upadteEnabled(Admin admin){
+		return adminMapper.upadteEnabled(admin);
+	}
 }

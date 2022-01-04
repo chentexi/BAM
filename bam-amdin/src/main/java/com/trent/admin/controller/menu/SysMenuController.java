@@ -4,6 +4,7 @@ package com.trent.admin.controller.menu;
 import com.alibaba.fastjson.JSON;
 import com.trent.admin.CurrentUser;
 import com.trent.common.utils.date.DateNewUtil;
+import com.trent.common.utils.date.DateUtils;
 import com.trent.common.utils.redis.CacheModule;
 import com.trent.common.utils.redis.CacheScope;
 import com.trent.common.utils.redis.KeyUtil;
@@ -144,7 +145,7 @@ public class SysMenuController{
 	@PostMapping("/addMenu")
 	public ResultUtil addMenu(@RequestBody SysMenu sysMenu){
 		sysMenu.setCreateBy(CurrentUser.currentAdminInfo().getName());
-		sysMenu.setCreateTime(DateNewUtil.getCurrentDate());
+		sysMenu.setCreateTime(DateUtils.currentDate());
 		int reslut= menuService.addMenu(sysMenu);
 		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
 			return ResultUtil.ok("操作成功!");
@@ -158,7 +159,7 @@ public class SysMenuController{
 	@PostMapping("/updateMenu")
 	public ResultUtil updateMenu(@RequestBody SysMenu sysMenu){
 		sysMenu.setUpdateBy(CurrentUser.currentAdminInfo().getName());
-		sysMenu.setUpdateTime(DateNewUtil.getCurrentDate());
+		sysMenu.setUpdateTime(DateUtils.currentDate());
 		int reslut= menuService.updateMenu(sysMenu);
 		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
 			return ResultUtil.ok("操作成功!");

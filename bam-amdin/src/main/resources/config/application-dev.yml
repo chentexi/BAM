@@ -90,3 +90,9 @@ pagehelper:
   params: count=countSql
 
 
+file:
+  staticAccessPath: /upload/**
+  uploadFolder: D:/
+apiUrl: http://localhost:8088/upload/
+
+
