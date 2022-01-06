@@ -1,5 +1,6 @@
 package com.trent.system.pojo.admin;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.trent.common.utils.base.BaseEntity;
@@ -75,6 +76,9 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
 
     @ApiModelProperty(value = "用户头像")
     private String userFace;
+    
+    @TableField(exist = false)
+    private Boolean enable2;
 
     
     public Admin(){
@@ -110,11 +114,7 @@ public class Admin extends BaseEntity implements Serializable, UserDetails{
     }
     @Override
     public boolean isEnabled(){
-        //return false;
-        
         return this.enabled;
     }
-    //public Boolean getEnabled(){
-    //    return enabled;
-    //}
+
 }

@@ -115,15 +115,24 @@ public class AdminServiceImpl  implements IAdminService{
 	
 	@Override
 	public int addAdmin(Admin admin){
-		return 0;
+		return adminMapper.addAdmin(admin);
 	}
 	
 	@Override
 	public int updateAdmin(Admin admin){
-		return 0;
+		return adminMapper.updateAdmin(admin);
 	}
 	@Override
 	public int upadteEnabled(Admin admin){
 		return adminMapper.upadteEnabled(admin);
+	}
+	
+	@Override
+	public int delUserById(String ids){
+		if( StringUtils.isBlank(ids) ){
+			return 0;
+		}
+		String[] split = ids.split(",");
+		return adminMapper.delUserById(split);
 	}
 }

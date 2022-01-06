@@ -144,7 +144,7 @@ public class SysMenuController{
 	@ApiOperation(value = "添加菜单")
 	@PostMapping("/addMenu")
 	public ResultUtil addMenu(@RequestBody SysMenu sysMenu){
-		sysMenu.setCreateBy(CurrentUser.currentAdminInfo().getName());
+		sysMenu.setCreateBy(CurrentUser.currentAdminInfo().getId());
 		sysMenu.setCreateTime(DateUtils.currentDate());
 		int reslut= menuService.addMenu(sysMenu);
 		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
@@ -158,7 +158,7 @@ public class SysMenuController{
 	@ApiOperation(value = "编辑菜单")
 	@PostMapping("/updateMenu")
 	public ResultUtil updateMenu(@RequestBody SysMenu sysMenu){
-		sysMenu.setUpdateBy(CurrentUser.currentAdminInfo().getName());
+		sysMenu.setUpdateBy(CurrentUser.currentAdminInfo().getId());
 		sysMenu.setUpdateTime(DateUtils.currentDate());
 		int reslut= menuService.updateMenu(sysMenu);
 		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){

@@ -71,19 +71,19 @@
     <update id="updateMenu">
         update bam.sys_menu
         <set>
-            <if test="parentId">parent_id=#{parentId},</if>
-            <if test="menuName">menu_name=#{menuName},</if>
-            <if test="orderNum">order_num=#{orderNum},</if>
-            <if test="url">url=#{url},</if>
-            <if test="component">component=#{component},</if>
-            <if test="menuType">menu_type=#{menuType},</if>
-            <if test="visible">visible=#{visible},</if>
-            <if test="perms">perms=#{perms},</if>
-            <if test="enable">enable=#{enable},</if>
-            <if test="icon">icon=#{icon},</if>
-            <if test="updateBy">update_by=#{updateBy},</if>
-            <if test="updateTime">update_time=#{updateTime},</if>
-            <if test="remark">remark=#{remark}</if>
+            <if test="parentId!=null and parentId!=''">parent_id=#{parentId},</if>
+            <if test="menuName!=null and menuName!=''">menu_name=#{menuName},</if>
+            <if test="orderNum !=null and  orderNum !=''">order_num=#{orderNum},</if>
+            <if test=" url!=null and url!=''">url=#{url},</if>
+            <if test="component !=null and component!=''">component=#{component},</if>
+            <if test="menuType !=null and menuType!=''">menu_type=#{menuType},</if>
+            <if test="visible !=null and visible!=''">visible=#{visible},</if>
+            <if test="perms !=null and perms!=''">perms=#{perms},</if>
+            <if test="enable !=null and enable!=''">enable=#{enable},</if>
+            <if test="icon !=null and icon!=''">icon=#{icon},</if>
+            <if test="updateBy !=null and updateBy!=''">update_by=#{updateBy},</if>
+            <if test="updateTime !=null">update_time=#{updateTime},</if>
+            <if test="remark !=null and remark!=''">remark=#{remark}</if>
         </set>
         where menu_id=#{menuId}
     </update>

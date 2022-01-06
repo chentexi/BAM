@@ -30,10 +30,10 @@ public class BaseEntity implements Serializable{
 	private static final Integer DEFAULT_PAGE_NUM = 1;
 	
 	@ApiModelProperty(value = "创建人")
-	private String createBy;
+	private Integer createBy;
 	
 	@ApiModelProperty(value = "更新人")
-	private String updateBy;
+	private Integer updateBy;
 	
 	@ApiModelProperty(value = "创建时间")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

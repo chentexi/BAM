@@ -22,4 +22,11 @@ public interface AdminMapper {
 	List<Admin> findAdmin(Admin admin);
 	
 	int upadteEnabled(Admin admin);
+	
+	int delUserById(String[] split);
+	
+	int addAdmin(Admin admin);
+	
+	int updateAdmin(Admin admin);
+	
 }

@@ -36,4 +36,6 @@ public interface IAdminService {
 	int updateAdmin(Admin admin);
 	
 	int upadteEnabled(Admin admin);
+	
+	int delUserById(String ids);
 }
