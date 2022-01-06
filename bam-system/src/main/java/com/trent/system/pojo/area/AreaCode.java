@@ -1,5 +1,6 @@
 package com.trent.system.pojo.area;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.trent.common.utils.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
@@ -7,6 +8,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -19,7 +23,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("area_code")
+@TableName("sys_area_code")
 @ApiModel(value="AreaCode对象", description="")
 public class AreaCode extends BaseEntity {
 
@@ -37,5 +41,8 @@ public class AreaCode extends BaseEntity {
     @ApiModelProperty(value = "父级区划代码")
     private Long pcode;
 
+    @ApiModelProperty(value = "子区域集合")
+    @TableField(exist = false)
+    public List<AreaCode> children;
 
 }

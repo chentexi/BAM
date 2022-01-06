@@ -5,11 +5,17 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trent.system.mapper.area.AreaCodeMapper;
 import com.trent.system.pojo.area.AreaCode;
 import com.trent.system.service.area.IAreaCodeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author Trent
@@ -17,5 +23,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AreaCodeServiceImpl extends ServiceImpl<AreaCodeMapper, AreaCode> implements IAreaCodeService{
+	@Autowired
+	private AreaCodeMapper areaCodeMapper;
+	@Override
+	public List<AreaCode> findAreaCodeAll(){
+		System.out.println();
+		List<AreaCode> areaCodeList = areaCodeMapper.findAreaCodeAll();
+		return areaCodeList;
+	}
 
 }
