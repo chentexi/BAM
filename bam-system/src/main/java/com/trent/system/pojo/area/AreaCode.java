@@ -41,6 +41,7 @@ public class AreaCode extends BaseEntity {
     @ApiModelProperty(value = "父级区划代码")
     private Long pcode;
 
+    
     @ApiModelProperty(value = "子区域集合")
     @TableField(exist = false)
     public List<AreaCode> children;
