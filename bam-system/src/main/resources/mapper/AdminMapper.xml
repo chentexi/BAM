@@ -25,10 +25,15 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, nickName, gender, phone, telephone, address, email, enabled, userName, passWord, userFace, createBy, updateBy, createTime, updateTime,remark
+        <if test="true">
+            id, name, nickName, gender, phone, telephone, address, email, enabled, userName, passWord, userFace, createBy, updateBy, createTime, updateTime,remark
+        </if>
+
     </sql>
     <sql id="Base_Column_admin">
-        id, name, nickName, gender, phone, email, enabled, userFace, createBy, createTime,remark
+        <if test="true">
+            id, name, nickName, gender, phone, email, enabled, userFace, createBy, createTime,remark
+        </if>
     </sql>
     <insert id="addAdmin">
         insert into sys_admin(<include refid="Base_Column_admin"/>) values (#{id},#{name},#{nickName},#{gender},#{phone},#{email},#{enabled},null,#{createBy},#{createTime},#{remark})
