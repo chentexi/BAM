@@ -1,4 +1,4 @@
-package com.trent.admin.controller.role;
+package com.trent.admin.controller.captcha.role;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
