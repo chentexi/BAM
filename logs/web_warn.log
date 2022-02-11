@@ -1,0 +1,2 @@
+2022-02-10 10:18:18.825 [main] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.trent.system.pojo.area.AreaCode.
+2022-02-10 10:18:19.974 [main] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.trent.admin.pojo.MailLog.

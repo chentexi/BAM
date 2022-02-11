@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="NoSqlConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="databaseVendor" value="DatabaseVendor{name='RedisDB'}" />
+          <option name="label" value="local-redis" />
+          <option name="serverUrl" value="127.0.0.1:6379" />
+        </ServerConfiguration>
+      </list>
+    </option>
+    <option name="shellPathByDatabaseVendor">
+      <map>
+        <entry key="DatabaseVendor{name='RedisDB'}" value="D:\Tool\Redis\Redis\redis-cli.exe" />
+      </map>
+    </option>
+  </component>
+</project>

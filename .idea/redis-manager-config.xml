@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PersistentConfig">
+    <option name="consoleFilePath" value="C:\Users\Trent\AppData\Local\Temp\\redis\491f84d1-c5c1-4560-8971-20d380e1fdaf\console.redis" />
+    <option name="baseUrl" value="http://47.115.84.234:8080" />
+    <option name="id" value="15" />
+    <option name="configList">
+      <list>
+        <RedisServerNode>
+          <option name="auth" value="" />
+          <option name="comment" value="" />
+          <option name="host" value="127.0.0.1" />
+          <option name="id" value="2" />
+          <option name="name" value="local-redis" />
+          <option name="passphrase" value="" />
+          <option name="port" value="6379" />
+          <option name="sshAuthType" value="PASSWORD" />
+          <option name="sshPassword" value="" />
+          <option name="sshPort" value="" />
+          <option name="sshRedisAuth" value="" />
+          <option name="sshRedisHost" value="" />
+          <option name="sshRedisPort" value="" />
+          <option name="sshUsername" value="" />
+          <option name="url" value="" />
+          <option name="username" value="" />
+        </RedisServerNode>
+        <RedisServerNode>
+          <option name="auth" value="0515" />
+          <option name="comment" value="" />
+          <option name="host" value="192.168.110.105" />
+          <option name="id" value="4" />
+          <option name="name" value="local-redis2" />
+          <option name="passphrase" value="" />
+          <option name="port" value="6379" />
+          <option name="privateKeyPath" value="" />
+          <option name="sshAuthType" value="PASSWORD" />
+          <option name="sshPassword" value="" />
+          <option name="sshPort" value="" />
+          <option name="sshRedisAuth" value="" />
+          <option name="sshRedisHost" value="" />
+          <option name="sshRedisPort" value="" />
+          <option name="sshUsername" value="" />
+          <option name="url" value="" />
+          <option name="username" value="" />
+        </RedisServerNode>
+      </list>
+    </option>
+    <option name="langCode" value="en" />
+    <option name="lastRedisServerNode">
+      <RedisServerNode>
+        <option name="auth" value="0515" />
+        <option name="comment" value="" />
+        <option name="host" value="192.168.110.105" />
+        <option name="id" value="4" />
+        <option name="name" value="local-redis2" />
+        <option name="passphrase" value="" />
+        <option name="port" value="6379" />
+        <option name="privateKeyPath" value="" />
+        <option name="sshAuthType" value="PASSWORD" />
+        <option name="sshPassword" value="" />
+        <option name="sshPort" value="" />
+        <option name="sshRedisAuth" value="" />
+        <option name="sshRedisHost" value="" />
+        <option name="sshRedisPort" value="" />
+        <option name="sshUsername" value="" />
+        <option name="url" value="" />
+        <option name="username" value="" />
+      </RedisServerNode>
+    </option>
+    <option name="configs">
+      <map>
+        <entry key="2">
+          <value>
+            <RedisServerNode>
+              <option name="auth" value="" />
+              <option name="comment" value="" />
+              <option name="connect" value="true" />
+              <option name="host" value="127.0.0.1" />
+              <option name="id" value="2" />
+              <option name="name" value="local-redis" />
+              <option name="passphrase" value="" />
+              <option name="port" value="6379" />
+              <option name="sshAuthType" value="PASSWORD" />
+              <option name="sshPassword" value="" />
+              <option name="sshPort" value="" />
+              <option name="sshRedisAuth" value="" />
+              <option name="sshRedisHost" value="" />
+              <option name="sshRedisPort" value="" />
+              <option name="sshUsername" value="" />
+              <option name="url" value="" />
+              <option name="username" value="" />
+            </RedisServerNode>
+          </value>
+        </entry>
+        <entry key="4">
+          <value>
+            <RedisServerNode>
+              <option name="auth" value="0515" />
+              <option name="comment" value="" />
+              <option name="host" value="192.168.110.105" />
+              <option name="id" value="4" />
+              <option name="name" value="local-redis2" />
+              <option name="passphrase" value="" />
+              <option name="port" value="6379" />
+              <option name="privateKeyPath" value="" />
+              <option name="sshAuthType" value="PASSWORD" />
+              <option name="sshPassword" value="" />
+              <option name="sshPort" value="" />
+              <option name="sshRedisAuth" value="" />
+              <option name="sshRedisHost" value="" />
+              <option name="sshRedisPort" value="" />
+              <option name="sshUsername" value="" />
+              <option name="url" value="" />
+              <option name="username" value="" />
+            </RedisServerNode>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

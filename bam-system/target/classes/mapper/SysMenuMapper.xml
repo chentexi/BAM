@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trent.system.mapper.menu.SysMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trent.system.pojo.menu.SysMenu">
+        <id column="menu_id" property="menuId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="url" property="url"/>
+        <result column="component" property="component"/>
+        <result column="menu_type" property="menuType"/>
+        <result column="visible" property="visible"/>
+        <result column="perms" property="perms"/>
+        <result column="enable" property="enable"/>
+        <result column="icon" property="icon"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        menu_id, parent_id, menu_name, order_num, url, component, menu_type, visible, perms, enable, icon, create_by, create_time, update_by, update_time, remark
+    </sql>
+    <sql id="Menu_List">
+        menu_id, parent_id, menu_name, order_num, url, component, menu_type, visible, perms, enable, icon, remark
+    </sql>
+    <insert id="addMenu">
+        insert into bam.sys_menu (<include refid="Base_Column_List"/>)
+        values (#{menuId},#{parentId},#{menuName},#{orderNum},#{url},#{component},#{menuType},#{visible},#{perms},#{enable},#{icon},#{createBy},#{createTime},#{updateBy},#{updateTime},#{remark})
+    </insert>
+
+    <select id="getMenuListAll" resultMap="BaseResultMap">
+        select
+        <include refid="Menu_List"/>
+        from sys_menu
+        where menu_type in ('M', 'C') and visible = 0
+        order by menu_id
+    </select>
+    <select id="getMenuListById" parameterType="integer" resultMap="BaseResultMap">
+        select
+        <include refid="Menu_List"/>
+        from bam.sys_menu
+        where parent_id =#{id} and menu_type in ('M', 'C')
+    </select>
+    <select id="getMenuLists" resultMap="BaseResultMap">
+        select
+        <include refid="Menu_List"/>
+        from sys_menu
+        <where>
+            and menu_type in ('M','C')
+            <if test="menuName!=null and menuName!=''">
+                and menu_name like concat('%',#{menuName},'%')
+            </if>
+        </where>
+        order by menu_id
+    </select>
+    <delete id="delectMenuById" parameterType="arraylist">
+        delete from sys_menu where menu_id = #{id} or parent_id = #{id}
+    </delete>
+    <update id="updateMenuVisible">
+        update bam.sys_menu set bam.sys_menu.visible=#{visible} where menu_id = #{menuId}
+    </update>
+    <update id="updateEnable">
+        update bam.sys_menu set sys_menu.enable=#{enable} where menu_id = #{menuId}
+    </update>
+    <update id="updateMenu">
+        update bam.sys_menu
+        <set>
+            <if test="parentId!=null and parentId!=''">parent_id=#{parentId},</if>
+            <if test="menuName!=null and menuName!=''">menu_name=#{menuName},</if>
+            <if test="orderNum !=null and  orderNum !=''">order_num=#{orderNum},</if>
+            <if test=" url!=null and url!=''">url=#{url},</if>
+            <if test="component !=null and component!=''">component=#{component},</if>
+            <if test="menuType !=null and menuType!=''">menu_type=#{menuType},</if>
+            <if test="visible !=null and visible!=''">visible=#{visible},</if>
+            <if test="perms !=null and perms!=''">perms=#{perms},</if>
+            <if test="enable !=null and enable!=''">enable=#{enable},</if>
+            <if test="icon !=null and icon!=''">icon=#{icon},</if>
+            <if test="updateBy !=null and updateBy!=''">update_by=#{updateBy},</if>
+            <if test="updateTime !=null">update_time=#{updateTime},</if>
+            <if test="remark !=null and remark!=''">remark=#{remark}</if>
+        </set>
+        where menu_id=#{menuId}
+    </update>
+</mapper>

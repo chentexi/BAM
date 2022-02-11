@@ -15,4 +15,8 @@ pagehelper:
 #  supportMethodsArguments: true
 #  params: "count=countSql"
 
+#日志
+logging:
+  file:
+    path: D:/logs
 

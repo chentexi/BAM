@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BAM.iml" filepath="$PROJECT_DIR$/BAM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bam-amdin/bam-amdin.iml" filepath="$PROJECT_DIR$/bam-amdin/bam-amdin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bam-common/bam-common.iml" filepath="$PROJECT_DIR$/bam-common/bam-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bam-logging/bam-logging.iml" filepath="$PROJECT_DIR$/bam-logging/bam-logging.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bam-system/bam-system.iml" filepath="$PROJECT_DIR$/bam-system/bam-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bam-tools/bam-tools.iml" filepath="$PROJECT_DIR$/bam-tools/bam-tools.iml" />
+    </modules>
+  </component>
+</project>

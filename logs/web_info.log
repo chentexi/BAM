@@ -1,0 +1,14 @@
+2022-02-10 10:18:16.666 [main] INFO  com.trent.AppRun - Starting AppRun using Java 1.8.0_241 on DESKTOP-R4JKNA9 with PID 3812 (D:\Strive\TrentProject\BAM\bam-amdin\target\classes started by Trent in D:\Strive\TrentProject\BAM)
+2022-02-10 10:18:16.666 [main] INFO  com.trent.AppRun - The following profiles are active: dev
+2022-02-10 10:18:18.255 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8088"]
+2022-02-10 10:18:18.255 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-02-10 10:18:18.255 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.46]
+2022-02-10 10:18:18.387 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-02-10 10:18:20.528 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-02-10 10:18:20.892 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateHikariCP - Starting...
+2022-02-10 10:18:21.062 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateHikariCP - Start completed.
+2022-02-10 10:18:21.245 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8088"]
+2022-02-10 10:18:21.261 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2022-02-10 10:18:21.277 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-02-10 10:18:21.314 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2022-02-10 10:18:21.493 [main] INFO  com.trent.AppRun - Started AppRun in 5.463 seconds (JVM running for 6.531)

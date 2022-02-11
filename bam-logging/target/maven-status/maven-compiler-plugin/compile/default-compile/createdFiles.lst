@@ -1,0 +1,4 @@
+com\trent\loging\service\test.class
+com\trent\loging\domain\test.class
+com\trent\loging\mapper\test.class
+com\trent\loging\service\impl\testImpl.class
