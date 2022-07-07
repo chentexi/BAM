@@ -3,7 +3,6 @@ package com.trent.common.utils.result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.poi.ss.formula.functions.T;
 
 /**
  * @Author: Trent
@@ -14,11 +13,17 @@ import org.apache.poi.ss.formula.functions.T;
 @Getter
 @Setter
 public class ResultUtil{
+	private static final long serialVersionUID = -2436709332711007968L;
+	
+	//前端请求响应成功时状态
 	public static final Integer CODE_SUCCESS = 200;
+	
+	//状态更新删除成功时的返回值
 	public static final Integer CODE_UPDATE_DEL_STATUS=1;
+	
+	//状态更新删除失败时的返回值
 	public static final Integer CODE_UPDATE_DEL_ERROR_STATUS=0;
 	
-	private static final long serialVersionUID = -2436709332711007968L;
 	
 	/**
 	 * 定义jackson对象
