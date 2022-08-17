@@ -65,8 +65,8 @@
         from sys_admin
         <where>
             <if test="name!= null and name!=''">name like concat('%',#{name},'%')</if>
-            <if test="startDateTime!=null and startDateTime!=''">createTime &gt;= date_format(#{startDateTime},'%Y-%m-%d %H:%m:%s')</if>
-            <if test="endDateTime!=null and endDateTime!=''">createTime &lt;= date_format(#{endDateTime},'%Y-%m-%d %H:%m:%s')</if>
+            <if test="startDateTime!=null and startDateTime!=''">createTime <![CDATA[&gt;= ]]> date_format(#{startDateTime},'%Y-%m-%d %H:%m:%s')</if>
+            <if test="endDateTime!=null and endDateTime!=''">createTime <![CDATA[&lt;=]]> date_format(#{endDateTime},'%Y-%m-%d %H:%m:%s')</if>
         </where>
         order by id
     </select>

@@ -7,10 +7,7 @@ import com.trent.system.pojo.area.AreaCode;
 import com.trent.system.service.area.IAreaCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
