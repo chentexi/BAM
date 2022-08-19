@@ -21,7 +21,7 @@ import java.security.Principal;
  * @program: BAM
  * @Description:
  */
-@Api(tags = "LoginContorller")
+@Api(tags = "登录接口")
 @RestController
 public class LoginContorller{
 	

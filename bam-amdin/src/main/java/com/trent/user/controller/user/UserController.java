@@ -5,6 +5,7 @@ import com.trent.common.utils.date.DateUtils;
 import com.trent.common.utils.result.ResultUtil;
 import com.trent.system.pojo.user.User;
 import com.trent.system.service.login.IUserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
+@Api(tags = "用户管理")
 public class UserController {
 	@Value("${file.uploadFolder}")
 	private String path;

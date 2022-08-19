@@ -31,7 +31,7 @@ public class Swagger2Config{
 	public Docket createRestApi(){
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
 				//为当前包下的controller生成api文档
-				.apis(RequestHandlerSelectors.basePackage("com.trent.admin.controller"))
+				.apis(RequestHandlerSelectors.basePackage("com.trent.user.controller"))
 				.paths(PathSelectors.any())
 				.build()
 				.securitySchemes(securitySchemes())

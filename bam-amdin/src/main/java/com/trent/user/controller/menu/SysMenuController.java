@@ -40,7 +40,7 @@ import java.util.Map;
  * @since 2021-11-16
  */
 @RestController
-@Api(tags = "SysMenuController")
+@Api(tags = "菜单管理")
 @RequestMapping("/menu")
 public class SysMenuController{
 	@Resource
