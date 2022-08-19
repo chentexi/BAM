@@ -1,7 +1,7 @@
 package com.trent.system.service.impl.menu;
 
 import com.trent.system.mapper.menu.SysMenuMapper;
-import com.trent.system.pojo.admin.Admin;
+import com.trent.system.pojo.user.User;
 import com.trent.system.pojo.menu.SysMenu;
 import com.trent.system.service.menu.ISysMenuService;
 import org.apache.commons.lang3.StringUtils;
@@ -28,11 +28,11 @@ public class SysMenuServiceImpl implements ISysMenuService{
 	private SysMenuMapper menuMapper;
 	
 	@Override
-	public List<SysMenu> getMenuList(Admin admin){
+	public List<SysMenu> getMenuList(User user){
 		
 		
 		List<SysMenu> menuList = null;
-		if( admin.isAdmin() ){
+		if( user.isAdmin() ){
 			menuList = menuMapper.getMenuListAll();
 		}
 		
@@ -40,9 +40,9 @@ public class SysMenuServiceImpl implements ISysMenuService{
 	}
 	
 	@Override
-	public List<SysMenu> getMenuLists(SysMenu sysMenuParams, Admin admin){
+	public List<SysMenu> getMenuLists(SysMenu sysMenuParams, User user){
 		List<SysMenu> menuList = null;
-		if( admin.isAdmin() ){
+		if( user.isAdmin() ){
 			menuList = menuMapper.getMenuLists(sysMenuParams);
 		}
 		if( StringUtils.isNotBlank(sysMenuParams.getMenuName()) ){

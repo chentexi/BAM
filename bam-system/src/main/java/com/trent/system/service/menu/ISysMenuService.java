@@ -1,7 +1,7 @@
 package com.trent.system.service.menu;
 
 
-import com.trent.system.pojo.admin.Admin;
+import com.trent.system.pojo.user.User;
 import com.trent.system.pojo.menu.SysMenu;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface ISysMenuService {
 	
-	List<SysMenu> getMenuList(Admin admin);
+	List<SysMenu> getMenuList(User user);
 	
 	int delectMenuById(Integer id);
 	
@@ -24,7 +24,7 @@ public interface ISysMenuService {
 	
 	int updateMenuVisible(SysMenu sysMenu);
 	
-	List<SysMenu> getMenuLists(SysMenu sysMenuParams, Admin admin);
+	List<SysMenu> getMenuLists(SysMenu sysMenuParams, User user);
 	
 	int updateEnable(String menuId, String enable);
 	

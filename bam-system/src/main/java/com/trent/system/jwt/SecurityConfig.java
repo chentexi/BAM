@@ -1,7 +1,7 @@
 package com.trent.system.jwt;
 
-import com.trent.system.pojo.admin.Admin;
-import com.trent.system.service.login.IAdminService;
+import com.trent.system.pojo.user.User;
+import com.trent.system.service.login.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
-	private IAdminService adminService;
+	private IUserService userService;
 	
 	@Autowired
 	private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
@@ -92,9 +92,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Bean
 	public UserDetailsService userDetailsService(){
 		return userName -> {
-			Admin admin = adminService.getAdminByUserName(userName);
-			if( null != admin ){
-				return admin;
+			User user = userService.getUserByUserName(userName);
+			if( null != user ){
+				return user;
 			}
 			return null;
 		};
