@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @Description:
  */
 @SpringBootApplication
-@ComponentScan("com.trent.common.utils.*")
+@ComponentScan("com.trent.*")
 @MapperScan("com.*.*.mapper")
 public class AppRun{
 	public static void main(String[] args){

@@ -41,8 +41,7 @@ public class CaptchaController{
 	
 	@ApiOperation(value = "验证码")
 	@GetMapping(value = "/captcha", produces = "image/jpeg")
-	public void captcha(HttpServletRequest request, HttpServletResponse
-			                                                response) {
+	public void captcha(HttpServletRequest request, HttpServletResponse response){
 		// 定义response输出类型为image/jpeg类型
 		response.setDateHeader("Expires", 0);
 		// Set standard HTTP/1.1 no-cache headers.
@@ -62,20 +61,20 @@ public class CaptchaController{
 		//根据文本内容创建图形验证码
 		BufferedImage image = defaultKaptcha.createImage(text);
 		ServletOutputStream outputStream = null;
-		try {
+		try{
 			outputStream = response.getOutputStream();
 			//输出流输出图片，格式jpg
 			ImageIO.write(image, "jpg", outputStream);
 			outputStream.flush();
-		} catch ( IOException e) {
+		}catch( IOException e ){
 			e.printStackTrace();
 		}catch( java.io.IOException e ){
 			e.printStackTrace();
-		}finally {
-			if (null != outputStream) {
-				try {
+		}finally{
+			if( null != outputStream ){
+				try{
 					outputStream.close();
-				} catch (IOException e) {
+				}catch( IOException e ){
 					e.printStackTrace();
 				}catch( java.io.IOException e ){
 					e.printStackTrace();
@@ -86,21 +85,21 @@ public class CaptchaController{
 	}
 	@ApiOperation(value = "png类型验证码")
 	@GetMapping(value = "/images/captchaPng", produces = "image/png")
-	public void captchaPng(String key,HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public void captchaPng(String key, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		//静态验证码
-		SpecCaptcha specCaptcha = new SpecCaptcha(130,48,4);
+		SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 4);
 		String verCode = specCaptcha.text().toLowerCase();
 		
-		log.info("图片验证码()[png类型]生成的redis的key为: {},生成的验证码为: {}",key,verCode);
+		log.info("图片验证码()[png类型]生成的redis的key为: {},生成的验证码为: {}", key, verCode);
 		// 存入redis并设置过期时间为5分钟
 		redisUtil.set(key, verCode);
 		redisUtil.expire(key, 5, TimeUnit.MINUTES);
-		CaptchaUtil.out(specCaptcha,request, response);
+		CaptchaUtil.out(specCaptcha, request, response);
 		
 	}
 	@ApiOperation(value = "gif类型验证码")
-	@GetMapping(value = "/images/captchaGif",produces = "image/GIF")
-	public void captchaGif(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
+	@GetMapping(value = "/images/captchaGif", produces = "image/GIF")
+	public void captchaGif(HttpServletRequest request, HttpServletResponse response) throws java.io.IOException{
 		
 		//// 设置请求头为输出图片类型
 		//response.setContentType("image/gif");
@@ -124,26 +123,26 @@ public class CaptchaController{
 		CaptchaUtil.out(5, request, response);
 		// 设置宽、高、位数
 		CaptchaUtil.out(130, 48, 5, request, response);
-
+		
 		// 使用gif验证码
-		GifCaptcha gifCaptcha = new GifCaptcha(130,48,4);
+		GifCaptcha gifCaptcha = new GifCaptcha(130, 48, 4);
 		CaptchaUtil.out(gifCaptcha, request, response);
 	}
 	@ApiOperation(value = "ZHCN类型验证码")
-	@GetMapping(value = "/images/captchaZHCN",produces = "image/JPEG")
-	public void captchaZHCN(HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
+	@GetMapping(value = "/images/captchaZHCN", produces = "image/JPEG")
+	public void captchaZHCN(HttpServletRequest request, HttpServletResponse response) throws java.io.IOException{
 		
 		// 中文类型
 		ChineseCaptcha captcha = new ChineseCaptcha(130, 48);
 		//获取验证码
 		String text = captcha.text();
-		System.out.println("验证码为："+text);
+		System.out.println("验证码为：" + text);
 		// 输出验证码
 		captcha.out(response.getOutputStream());
 	}
 	@ApiOperation(value = "compute类型验证码")
-	@GetMapping(value = "/images/captchaCompute",produces = "image/png")
-	public void captchaCompute(String key,HttpServletRequest request,HttpServletResponse response) throws java.io.IOException{
+	@GetMapping(value = "/images/captchaCompute", produces = "image/png")
+	public void captchaCompute(String key, HttpServletRequest request, HttpServletResponse response) throws java.io.IOException{
 		
 		// 算术类型
 		ArithmeticCaptcha captcha = new ArithmeticCaptcha(130, 48);
@@ -151,11 +150,11 @@ public class CaptchaController{
 		captcha.setLen(2);  // 几位数运算，默认是两位
 		captcha.getArithmeticString();  // 获取运算的公式：4-9+1=?
 		String text = captcha.text();// 获取运算的结果：-4
-		log.info("图片验证码()[计算类型]生成的redis的key为: {},生成的验证码为: {}",key,text);
-		redisUtil.set(key,text);
-		redisUtil.expire(key,300,TimeUnit.SECONDS);
+		log.info("图片验证码()[计算类型]生成的redis的key为: {},生成的验证码为: {}", key, text);
+		redisUtil.set(key, text);
+		redisUtil.expire(key, 300, TimeUnit.SECONDS);
 		// 输出验证码
-		CaptchaUtil.out(captcha,request, response);
+		CaptchaUtil.out(captcha, request, response);
 	}
 	public static void main(String[] args){
 		// 三个参数分别为宽、高、位数
@@ -164,6 +163,6 @@ public class CaptchaController{
 		gifCaptcha.setCharType(Captcha.TYPE_DEFAULT);
 		//获取验证码
 		String text = gifCaptcha.text();
-		System.out.println("验证码为："+text);
+		System.out.println("验证码为：" + text);
 	}
 }
