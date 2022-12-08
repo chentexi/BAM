@@ -1,5 +1,7 @@
 package com.trent.common.utils.date;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,6 +15,7 @@ import java.util.Date;
  * @program: BAM
  * @Description: JDK 8  旧日期类 格式化与字符串转换 工具类
  */
+@EnableScheduling
 public class DateUtils{
 	public static final String YEAR_MONTH_DAY_PATTERN = "yyyy-MM-dd";
 	public static final String HOUR_MINUTE_SECOND_PATTERN = "HH:mm:ss";
