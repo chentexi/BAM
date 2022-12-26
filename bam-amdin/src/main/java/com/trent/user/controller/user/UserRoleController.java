@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/admin-role")
-@Api(tags = "用户与角色接口文档")
+@Api(tags = "用户与角色接口文档 ")
 public class UserRoleController{
 
 }
