@@ -33,7 +33,7 @@ public class UserController {
 	@Autowired
 	private IUserService UserService;
 	
-	@ApiOperation(value = "获取用户数据表 ")
+	@ApiOperation(value = " 获取用户数据表 ")
 	@PostMapping("/findUser")
 	public ResultUtil findUser(@RequestBody User user){
 		ResultUtil resultUtil = UserService.findUser(user);
