@@ -1,7 +1,8 @@
 package com.trent.system.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trent.common.utils.result.ResultUtil;
+import com.trent.common.utils.result.ResultCode;
+import com.trent.common.utils.result.ResultVo;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,7 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler{
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
-		ResultUtil bean = ResultUtil.fail("权限不足，请联系管理员！");
+		ResultVo bean = new ResultVo(ResultCode.FAILED,"权限不足，请联系管理员！");
 		bean.setCode(403);
 		out.write(new ObjectMapper().writeValueAsString(bean));
 		out.flush();

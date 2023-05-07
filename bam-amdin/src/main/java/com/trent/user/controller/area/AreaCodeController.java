@@ -1,7 +1,7 @@
 package com.trent.user.controller.area;
 
 
-import com.trent.common.utils.result.ResultUtil;
+import com.trent.common.utils.result.ResultVo;
 import com.trent.system.pojo.area.AreaCode;
 import com.trent.system.service.area.IAreaCodeService;
 import io.swagger.annotations.ApiModelProperty;
@@ -28,8 +28,8 @@ public class AreaCodeController{
 	
 	@ApiModelProperty("查询mybatis")
 	@PostMapping("findAreaCodeAll")
-	public ResultUtil findAreaCodeAll(){
+	public ResultVo findAreaCodeAll(){
 		List<AreaCode> areaCodeList=areaCodeService.findAreaCodeAll();
-		return ResultUtil.ok(areaCodeList);
+		return new ResultVo(areaCodeList);
 	}
 }
