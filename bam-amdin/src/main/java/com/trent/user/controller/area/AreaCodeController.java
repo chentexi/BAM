@@ -30,6 +30,7 @@ public class AreaCodeController{
 	@PostMapping("findAreaCodeAll")
 	public ResultVo findAreaCodeAll(){
 		List<AreaCode> areaCodeList=areaCodeService.findAreaCodeAll();
+		new ResultVo("oorrrffffooo");
 		return new ResultVo(areaCodeList);
 	}
 }
