@@ -142,29 +142,29 @@ public class SysMenuServiceImpl implements ISysMenuService{
 	}
 	
 	@Override
-	public int delectMenuById(Integer id){
+	public Boolean delectMenuById(Integer id){
 		return menuMapper.delectMenuById(id);
 	}
 	
 	@Override
-	public int updateMenuVisible(String menuId, String visible){
+	public Boolean updateMenuVisible(String menuId, String visible){
 		return menuMapper.updateMenuVisible(menuId, visible);
 	}
 	@Override
-	public int updateMenuVisible(SysMenu sysMenu){
+	public Boolean updateMenuVisible(SysMenu sysMenu){
 		return menuMapper.updateMenuVisible(sysMenu);
 	}
 	@Override
-	public int updateEnable(String menuId, String enable){
+	public Boolean updateEnable(String menuId, String enable){
 		return menuMapper.updateEnable(menuId, enable);
 	}
 	
 	@Override
-	public int addMenu(SysMenu sysMenu){
+	public Boolean addMenu(SysMenu sysMenu){
 		return menuMapper.addMenu(sysMenu);
 	}
 	@Override
-	public int updateMenu(SysMenu sysMenu){
+	public Boolean updateMenu(SysMenu sysMenu){
 		return menuMapper.updateMenu(sysMenu);
 	}
 }

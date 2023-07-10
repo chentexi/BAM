@@ -19,20 +19,20 @@ public interface SysMenuMapper {
 	
 	List<SysMenu> getMenuListAll();
 	
-	int delectMenuById(Integer id);
+	Boolean delectMenuById(Integer id);
 	
 	List<SysMenu> getMenuListById(Integer id);
 	
-	int updateMenuVisible(String menuId, String visible);
+	Boolean updateMenuVisible(String menuId, String visible);
 	
-	int updateMenuVisible(SysMenu sysMenu);
+	Boolean updateMenuVisible(SysMenu sysMenu);
 	
 	List<SysMenu> getMenuLists(SysMenu sysMenuParams);
 	
-	int updateEnable(String menuId, String enable);
+	Boolean updateEnable(String menuId, String enable);
 	
-	int addMenu(SysMenu sysMenu);
+	Boolean addMenu(SysMenu sysMenu);
 	
-	int updateMenu(SysMenu sysMenu);
+	Boolean updateMenu(SysMenu sysMenu);
 	
 }

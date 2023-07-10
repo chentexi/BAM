@@ -1,6 +1,6 @@
 package com.trent.user.controller.login;
 
-import com.trent.common.utils.result.ResultUtil;
+import com.trent.common.utils.result.ResultVo;
 import com.trent.system.pojo.user.User;
 import com.trent.system.pojo.user.UserLoginParam;
 import com.trent.system.service.login.IUserService;
@@ -30,7 +30,7 @@ public class LoginContorller{
 	
 	@ApiOperation(value = "登录之后返回token")
 	@PostMapping("/login")
-	public ResultUtil login(@RequestBody UserLoginParam userLoginParam, HttpServletRequest request) throws Exception{
+	public ResultVo login(@RequestBody UserLoginParam userLoginParam, HttpServletRequest request) throws Exception{
 		return userService.login(userLoginParam.getUserName(), userLoginParam.getPassWord(), userLoginParam.getCaptcha(), userLoginParam.getCaptchFlag(), request);
 	}
 	
@@ -48,9 +48,9 @@ public class LoginContorller{
 	}
 	@ApiOperation(value = "退出登录")
 	@PostMapping("/logout")
-	public ResultUtil logout() {
+	public ResultVo logout() {
 		//前端收到状态码,删除客户端的token
-		return ResultUtil.ok("注销成功！");
+		return new ResultVo("退出登陆成功");
 	}
 	
 }

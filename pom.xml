@@ -18,6 +18,7 @@
         <module>bam-system</module>
         <module>bam-tools</module>
         <module>bam-common</module>
+        <module>bam-learn</module>
     </modules>
 
     <parent>
