@@ -2,7 +2,8 @@ package com.trent.user.controller.user;
 
 
 import com.trent.common.utils.date.DateUtils;
-import com.trent.common.utils.result.ResultUtil;
+import com.trent.common.utils.result.ResultCode;
+import com.trent.common.utils.result.ResultVo;
 import com.trent.system.pojo.user.User;
 import com.trent.system.service.login.IUserService;
 import io.swagger.annotations.ApiOperation;
@@ -35,62 +36,62 @@ public class UserController {
 	
 	@ApiOperation(value = " 获取用户数据表 ")
 	@PostMapping("/findUser")
-	public ResultUtil findUser(@RequestBody User user){
-		ResultUtil resultUtil = UserService.findUser(user);
+	public ResultVo findUser(@RequestBody User user){
+		ResultVo resultUtil = UserService.findUser(user);
 		return resultUtil;
 	}
 
 	@ApiOperation(value = "添加用户")
 	@PostMapping("/addUser")
-	public ResultUtil addUser(@RequestBody User user){
+	public ResultVo addUser(@RequestBody User user){
 		user.setCreateBy(com.trent.User.CurrentUser.currentUserInfo().getId());
 		user.setCreateTime(DateUtils.currentDate());
 		int result= UserService.addUser(user);
-		if( result==ResultUtil.CODE_UPDATE_DEL_ERROR_STATUS ){
-			return ResultUtil.fail("操作失败!");
+		if( result== 1 ){
+			return new ResultVo(ResultCode.SUCCESS);
 		}else {
-			return ResultUtil.ok();
+			return new ResultVo(ResultCode.FAILED);
 		}
 	}
 
 	@ApiOperation(value = "编辑用户")
 	@PostMapping("/updateUser")
-	public ResultUtil updateUser(@RequestBody User user){
+	public ResultVo updateUser(@RequestBody User user){
 		user.setUpdateBy(com.trent.User.CurrentUser.currentUserInfo().getId());
 		user.setUpdateTime(DateUtils.currentDate());
 		int result= UserService.updateUser(user);
-		if( result==ResultUtil.CODE_UPDATE_DEL_ERROR_STATUS ){
-			return ResultUtil.fail("操作失败!");
+		if(result==1){
+			return new ResultVo(ResultCode.SUCCESS);
 		}else {
-			return ResultUtil.ok();
+			return new ResultVo(ResultCode.FAILED);
 		}
 	}
 
 	@ApiOperation(value = "是否启用该用户")
 	@PostMapping("/updateEnabled")
-	public ResultUtil upadteEnabled(@RequestBody User user){
+	public ResultVo upadteEnabled(@RequestBody User user){
 		user.setEnabled(user.getEnable2()?true:false);
-		int result= UserService.upadteEnabled(user);
-		if( result==ResultUtil.CODE_UPDATE_DEL_ERROR_STATUS ){
-			return ResultUtil.fail("操作失败!");
+		int result = UserService.upadteEnabled(user);
+		if(result==1){
+			return new ResultVo(ResultCode.SUCCESS);
 		}else{
-			return ResultUtil.ok();
+			return new ResultVo(ResultCode.FAILED);
 		}
 	}
 	
-	public ResultUtil uploadIcon(){
+	public ResultVo uploadIcon(){
 		
 		return null;
 	}
 	
 	@ApiOperation(value = "删除用户")
 	@PostMapping("/delUserById")
-	public ResultUtil delUserById(@RequestParam("ids") String ids){
+	public ResultVo delUserById(@RequestParam("ids") String ids){
 		int result = UserService.delUserById(ids);
-		if( result==ResultUtil.CODE_UPDATE_DEL_ERROR_STATUS ){
-			return ResultUtil.fail("操作失败!");
+		if(result==1){
+			return new ResultVo(ResultCode.SUCCESS);
 		}else {
-			return ResultUtil.ok();
+			return new ResultVo(ResultCode.FAILED);
 		}
 	}
 }

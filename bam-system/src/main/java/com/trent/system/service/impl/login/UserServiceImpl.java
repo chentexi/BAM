@@ -3,7 +3,8 @@ package com.trent.system.service.impl.login;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.trent.common.utils.redis.RedisUtil;
-import com.trent.common.utils.result.ResultUtil;
+import com.trent.common.utils.result.ResultCode;
+import com.trent.common.utils.result.ResultVo;
 import com.trent.system.jwt.JwtTokenUtil;
 import com.trent.system.mapper.login.UserMapper;
 import com.trent.system.pojo.user.User;
@@ -57,19 +58,19 @@ public class UserServiceImpl implements IUserService{
 	 * @return
 	 */
 	@Override
-	public ResultUtil login(String userName, String passWord, String captcha, String captchFlag, HttpServletRequest request) throws Exception{
+	public ResultVo login(String userName, String passWord, String captcha, String captchFlag, HttpServletRequest request) throws Exception{
 		//验证验证码从redis里面取
 		
 		UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 		if( StringUtils.isBlank(captcha)||StringUtils.isBlank(captchFlag)|| !captcha.toLowerCase().equals(redisUtil.get(captchFlag))){
 			redisUtil.delete(captchFlag);
-			return ResultUtil.fail("验证码有误,请重新输入验证码!");
+			return new ResultVo(ResultCode.FAILED,"验证码有误,请重新输入验证码!");
 		}
 		if( null == userDetails || !passwordEncoder.matches(passWord, userDetails.getPassword()) ){
-			return ResultUtil.fail("用户名或密码不正确!");
+			return new ResultVo(ResultCode.FAILED,"用户名或密码不正确!");
 		}
 		if( !userDetails.isEnabled() ){
-			return ResultUtil.fail("账号被禁用，请联系管理员!");
+			return new ResultVo(ResultCode.FAILED,"账号被禁用，请联系管理员!");
 		}
 		//更新secret登录用户对象
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -85,7 +86,7 @@ public class UserServiceImpl implements IUserService{
 		//删除验证码缓存
 		redisUtil.delete(captchFlag);
 		
-		return ResultUtil.ok(tokenMap);
+		return new ResultVo(tokenMap);
 	}
 	/**
 	 * 根据用户名获取用户
@@ -105,11 +106,11 @@ public class UserServiceImpl implements IUserService{
 	 * @return
 	 */
 	@Override
-	public ResultUtil findUser(User user){
+	public ResultVo findUser(User user){
 		PageHelper.startPage(user.getCurrentPage(), user.getPageSize());
 		List<User> list = userMapper.findUser(user);
 		PageInfo pageInfo = new PageInfo(list);
-		return ResultUtil.ok(pageInfo);
+		return new ResultVo(pageInfo);
 	}
 	
 	

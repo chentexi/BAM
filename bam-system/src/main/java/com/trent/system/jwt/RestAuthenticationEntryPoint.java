@@ -1,7 +1,8 @@
 package com.trent.system.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trent.common.utils.result.ResultUtil;
+import com.trent.common.utils.result.ResultCode;
+import com.trent.common.utils.result.ResultVo;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint{
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
-		ResultUtil bean = ResultUtil.fail("未登录,请重新登录！");
+		ResultVo bean = new ResultVo(ResultCode.FAILED,"未登录,请重新登录！");
 		bean.setCode(401);
 		out.write(new ObjectMapper().writeValueAsString(bean));
 		out.flush();

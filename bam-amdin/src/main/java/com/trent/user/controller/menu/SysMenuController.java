@@ -1,4 +1,4 @@
-package com.trent.User.controller.menu;
+package com.trent.user.controller.menu;
 
 
 import com.alibaba.fastjson.JSON;
@@ -8,8 +8,9 @@ import com.trent.common.utils.redis.CacheModule;
 import com.trent.common.utils.redis.CacheScope;
 import com.trent.common.utils.redis.KeyUtil;
 import com.trent.common.utils.redis.RedisUtil;
+import com.trent.common.utils.result.ResultCode;
 import com.trent.common.utils.result.ResultMapUtil;
-import com.trent.common.utils.result.ResultUtil;
+import com.trent.common.utils.result.ResultVo;
 import com.trent.system.pojo.user.User;
 import com.trent.system.pojo.menu.SysMenu;
 import com.trent.system.service.login.IUserService;
@@ -42,128 +43,117 @@ import java.util.Map;
 @RestController
 @Api(tags = "SysMenuController")
 @RequestMapping("/menu")
-public class SysMenuController{
+public class SysMenuController {
 	@Resource
 	private ISysMenuService menuService;
 	@Resource
 	private IUserService UserService;
 	@Resource
 	private RedisUtil redisUtil;
-	
+
 	@ApiOperation(value = "菜单列表")
 	@GetMapping("/menuList")
-	public Map<String, Object> getMenuList( Principal principal){
-		if( principal == null ){
+	public Map<String, Object> getMenuList(Principal principal) {
+		if (principal == null) {
 			return ResultMapUtil.fail("请先登录!");
 		}
 		User user = CurrentUser.currentUserInfo();
-		
+
 		String key = KeyUtil.formatKey(CacheModule.VPFORM, CacheScope.CACHE, "menu_" + user.getId());
 		List<SysMenu> menuList = JSON.parseArray(redisUtil.get(key), SysMenu.class);
-		if( !CollectionUtils.isEmpty(menuList) ){
+		if (!CollectionUtils.isEmpty(menuList)) {
 			return ResultMapUtil.success("成功", menuList);
-		}else{
+		} else {
 			menuList = menuService.getMenuList(user);
 			//redisUtil.set(key,JSON.toJSONString(menuList));
 		}
 		return ResultMapUtil.success("成功", menuList);
 	}
-	
+
 	@ApiOperation(value = "所有菜单列表")
 	@PostMapping("/menuLists")
-	public Map<String, Object> getMenuLists(@RequestBody SysMenu sysMenuParams){
+	public Map<String, Object> getMenuLists(@RequestBody SysMenu sysMenuParams) {
 		User principal = CurrentUser.currentUserInfo();
-		if( principal == null ){
+		if (principal == null) {
 			return ResultMapUtil.fail("请先登录!");
 		}
-		
+
 		String key = KeyUtil.formatKey(CacheModule.VPFORM, CacheScope.CACHE, "menu_" + principal.getId());
 		List<SysMenu> menuList = JSON.parseArray(redisUtil.get(key), SysMenu.class);
-		if( !CollectionUtils.isEmpty(menuList) ){
+		if (!CollectionUtils.isEmpty(menuList)) {
 			return ResultMapUtil.success("成功", menuList);
-		}else{
-			menuList = menuService.getMenuLists(sysMenuParams,principal);
+		} else {
+			menuList = menuService.getMenuLists(sysMenuParams, principal);
 			//redisUtil.set(key,JSON.toJSONString(menuList));
 		}
-		SysMenu sysMenu=new SysMenu();
+		SysMenu sysMenu = new SysMenu();
 		sysMenu.setMenuId(0);
 		sysMenu.setMenuName("顶级类目");
 		sysMenu.setChildren(menuList);
-		
-		List<SysMenu> sysMenus=new ArrayList<>();
+
+		List<SysMenu> sysMenus = new ArrayList<>();
 		sysMenus.add(sysMenu);
-		
-		Map<String,Object> objectMap =new HashMap<>(2);
-		objectMap.put("data",menuList);
-		objectMap.put("mainMenu",sysMenus);
+
+		Map<String, Object> objectMap = new HashMap<>(2);
+		objectMap.put("data", menuList);
+		objectMap.put("mainMenu", sysMenus);
 		return ResultMapUtil.success("成功", objectMap);
 	}
-	
+
 	@ApiOperation(value = "保存/修改")
 	@PostMapping("/save")
-	public ResultUtil saveMenu(){
+	public ResultVo saveMenu() {
 		return null;
 	}
-	
+
 	@ApiOperation(value = "菜单删除")
 	@GetMapping("/delect")
-	public ResultUtil delectMenu(Integer id, Principal principal){
-		
-		int result = menuService.delectMenuById(id);
-		if( ResultUtil.CODE_UPDATE_DEL_STATUS == result ){
-			return ResultUtil.ok();
+	public ResultVo delectMenu(Integer id, Principal principal) {
+		if (menuService.delectMenuById(id)) {
+			return new ResultVo(ResultCode.SUCCESS);
 		}
-		return ResultUtil.fail("删除失败!请联系管理员!");
+		return new ResultVo(ResultCode.FAILED);
 	}
-	
+
 	@ApiOperation(value = "更改菜单显示")
 	@PostMapping("/updateVisible")
-	public ResultUtil updateVisible(@RequestParam("menuId") String menuId,@RequestParam("visible") String visible){
-		int reslut = menuService.updateMenuVisible(menuId,visible);
-		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
-			return ResultUtil.ok("操作成功");
-		}else {
-		    return ResultUtil.fail("修改失败!请联系管理员!");
+	public ResultVo updateVisible(@RequestParam("menuId") String menuId, @RequestParam("visible") String visible) {
+		if (menuService.updateMenuVisible(menuId, visible)) {
+			return new ResultVo(ResultCode.SUCCESS);
 		}
+		return new ResultVo(ResultCode.FAILED);
 	}
-	
+
 	@ApiOperation(value = "更改菜单是否启用")
 	@PostMapping("/updateEnable")
-	public ResultUtil updateEnable(@RequestParam("menuId") String menuId,@RequestParam String enable){
-		int reslut = menuService.updateEnable(menuId,enable);
-		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
-			return ResultUtil.ok("操作成功");
-		}else {
-			return ResultUtil.fail("修改失败!请联系管理员!");
+	public ResultVo updateEnable(@RequestParam("menuId") String menuId, @RequestParam String enable) {
+		if (menuService.updateEnable(menuId, enable)) {
+			return new ResultVo(ResultCode.SUCCESS);
 		}
+		return new ResultVo(ResultCode.FAILED, "修改失败!请联系管理员!");
 	}
 	
 	@ApiOperation(value = "添加菜单")
 	@PostMapping("/addMenu")
-	public ResultUtil addMenu(@RequestBody SysMenu sysMenu){
+	public ResultVo addMenu(@RequestBody SysMenu sysMenu) {
 		sysMenu.setCreateBy(CurrentUser.currentUserInfo().getId());
 		sysMenu.setCreateTime(DateUtils.currentDate());
-		int reslut= menuService.addMenu(sysMenu);
-		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
-			return ResultUtil.ok("操作成功!");
-		}else{
-			return ResultUtil.fail("添加失败!");
+		if (menuService.addMenu(sysMenu)) {
+			return new ResultVo(ResultCode.SUCCESS);
 		}
+		return new ResultVo(ResultCode.FAILED);
 	}
-	
-	
+
+
 	@ApiOperation(value = "编辑菜单")
 	@PostMapping("/updateMenu")
-	public ResultUtil updateMenu(@RequestBody SysMenu sysMenu){
+	public ResultVo updateMenu(@RequestBody SysMenu sysMenu) {
 		sysMenu.setUpdateBy(CurrentUser.currentUserInfo().getId());
 		sysMenu.setUpdateTime(DateUtils.currentDate());
-		int reslut= menuService.updateMenu(sysMenu);
-		if( reslut==ResultUtil.CODE_UPDATE_DEL_STATUS ){
-			return ResultUtil.ok("操作成功!");
-		}else{
-			return ResultUtil.fail("添加失败!");
+		if (menuService.updateMenu(sysMenu)) {
+			return new ResultVo(ResultCode.SUCCESS);
 		}
+		return new ResultVo(ResultCode.FAILED);
 	}
-	
-	
+
 }

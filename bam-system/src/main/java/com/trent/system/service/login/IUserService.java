@@ -1,7 +1,7 @@
 package com.trent.system.service.login;
 
 
-import com.trent.common.utils.result.ResultUtil;
+import com.trent.common.utils.result.ResultVo;
 import com.trent.system.pojo.user.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2021-11-12
  */
 public interface IUserService{
-	ResultUtil login(String userName, String password, String captcha, String captchFlag, HttpServletRequest request) throws Exception;
+	ResultVo login(String userName, String password, String captcha, String captchFlag, HttpServletRequest request) throws Exception;
 	
 	/**
 	 * 获取当前用户信息
@@ -29,7 +29,7 @@ public interface IUserService{
 	 * @param user
 	 * @return
 	 */
-	ResultUtil findUser(User user);
+	ResultVo findUser(User user);
 	
 	int addUser(User user);
 	

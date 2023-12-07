@@ -144,7 +144,8 @@ public class JwtTokenUtil{
 	 * @param token
 	 * @return
 	 */
-	public boolean canRefresh(String token){
+	public boolean
+	canRefresh(String token){
 		return !isTokenExpired(token);
 	}
 	

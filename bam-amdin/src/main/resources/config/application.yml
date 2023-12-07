@@ -2,6 +2,8 @@
 spring:
   profiles:
     active: dev
+  flyway:
+    baseline-on-migrate: true
 #端口
 server:
   port: 8088
