@@ -12,5 +12,7 @@ public class TrentLambdaDemo01 {
         //lambda写法
         new Thread(() -> {System.out.println("thread runnable");}).start();
     }
+    public void lambdaDome01(){
 
+    }
 }
