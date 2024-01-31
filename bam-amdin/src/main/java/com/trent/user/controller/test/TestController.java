@@ -1,10 +1,19 @@
 package com.trent.user.controller.test;
 
+import com.sun.codemodel.JCodeModel;
 import com.trent.common.utils.result.ResultVo;
 import com.trent.system.pojo.user.User;
+import org.jsonschema2pojo.*;
+import org.jsonschema2pojo.rules.RuleFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,5 +56,31 @@ public class TestController {
         objectMap.put("num4",num4);
         objectMap.put("num5",num5);
         return new ResultVo(objectMap);
+    }
+
+    public static void main(String[] args) throws IOException {
+        JCodeModel codeModel = new JCodeModel();
+
+        File file = new File("/Users/trent/Emulate/Projects/BAM/bam-amdin/file/op/jon.json");
+        URI uri = file.toURI();
+        URL source = null;
+        try {
+            source = uri.toURL();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+
+        GenerationConfig config = new DefaultGenerationConfig() {
+            @Override
+            public boolean isGenerateBuilders() { // set config option by overriding method
+                return true;
+            }
+        };
+
+        SchemaMapper mapper = new SchemaMapper(new RuleFactory(config, new Jackson2Annotator(config), new SchemaStore()), new SchemaGenerator());
+        mapper.generate(codeModel, "ClassName", "com.example", source);
+
+        codeModel.build(Files.createTempDirectory("required").toFile());
+
     }
 }
